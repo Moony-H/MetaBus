@@ -1,0 +1,52 @@
+def isApp=pluginManager.hasPlugin('com.android.application')
+
+
+//보통 presentation layer 에서만 resource를 사용한다.(R 패키지)
+//하지만 가끔 data layer에서 dummy data를 사용할 때도 있는데...?
+//그럼 그때 어떻게 해야 할까..?
+//현재 목표-> 모든 모듈의 build gradle 공통화 -> 어떻게 공통화를 시킬수 있을까 -> android 블록은 덮어 씌우기 가능. 따라서 이후에 name space만 바꾸면 됨. Good
+android {
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 33
+        if(isApp){
+            applicationId "com.moonyh.metabus"
+            versionCode 1
+            versionName "1.0"
+
+        }
+
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean","IS_DEBUG","false"
+        }
+
+        debug{
+            if(isApp){
+                applicationIdSuffix '.dev'
+            }
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean","IS_DEBUG","true"
+
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    viewBinding{
+        enabled=true
+    }
+}
