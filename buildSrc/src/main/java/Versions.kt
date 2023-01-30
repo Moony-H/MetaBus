@@ -7,22 +7,22 @@ object Versions {
     const val MIN_SDK_VERSION = 21
     const val TARGET_SDK_VERSION = 33
 
-    const val CORE_KTX = "1.5.0"
-    const val APP_COMPAT = "1.3.0"
+    const val CORE_KTX = "1.9.0"
+    const val APP_COMPAT = "1.6.0"
     const val ACTIVITY_KTX = "1.2.3"
     const val FRAGMENT_KTX = "1.3.4"
     const val LIFECYCLE_KTX = "2.3.1"
     const val ROOM = "2.3.0"
 
     const val HILT = "2.35.1"
-    const val MATERIAL = "1.3.0"
+    const val MATERIAL = "1.7.0"
 
     const val RETROFIT = "2.7.1"
     const val OKHTTP = "4.3.1"
 
     const val JUNIT = "4.13.2"
-    const val ANDROID_JUNIT = "1.1.2"
-    const val ESPRESSO_CORE = "3.3.0"
+    const val ANDROID_JUNIT = "1.1.5"
+    const val ESPRESSO_CORE = "3.5.1"
 }
 
 object Kotlin {
@@ -60,7 +60,7 @@ object Libraries {
     const val OKHTTP_LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
 }
 
-object UnitTest {
+object Junit {
     const val JUNIT         = "junit:junit:${Versions.JUNIT}"
 }
 
