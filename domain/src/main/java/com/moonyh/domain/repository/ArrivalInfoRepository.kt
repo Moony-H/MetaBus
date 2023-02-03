@@ -1,23 +1,18 @@
 package com.moonyh.domain.repository
 
 import com.moonyh.domain.model.normal.ApiResponse
-import com.moonyh.domain.model.response.BusArrivalInfoInStationResponse
-import com.moonyh.domain.model.response.StationArrivalInfoResponse
+import com.moonyh.domain.model.query.BusArrivalInfoInStationQuery
+import com.moonyh.domain.model.body.BusArrivalInfoInStationBody
+import com.moonyh.domain.model.body.StationArrivalInfoBody
+import com.moonyh.domain.model.query.StationArrivalInfoQuery
 
 interface ArrivalInfoRepository {
     suspend fun getStationArrivalInfo(
-        key: String,
-        pageNum: Int,
-        cityCode: String,
-        stationId: String
-    ): ApiResponse<StationArrivalInfoResponse>
+        stationArrivalInfoQuery: StationArrivalInfoQuery
+    ): ApiResponse<StationArrivalInfoBody>
 
     suspend fun getBusArrivalInfoInStation(
-        key: String,
-        pageNum: Int,
-        cityCode: String,
-        stationId: String,
-        busId: String
-    ): ApiResponse<BusArrivalInfoInStationResponse>
+        busArrivalInfoInStationQuery: BusArrivalInfoInStationQuery
+    ): ApiResponse<BusArrivalInfoInStationBody>
 
 }
