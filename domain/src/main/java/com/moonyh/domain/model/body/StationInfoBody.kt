@@ -6,5 +6,5 @@ import com.moonyh.domain.model.normal.MetaData
 
 interface StationInfoBody:ApiBody {
     val metaData:MetaData
-    val items:ArrayList<StationInfo>
+    val items:ArrayList<out StationInfo>
 }

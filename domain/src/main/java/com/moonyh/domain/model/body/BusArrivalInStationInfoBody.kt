@@ -4,7 +4,7 @@ import com.moonyh.domain.model.BusInfo
 import com.moonyh.domain.model.normal.ApiBody
 import com.moonyh.domain.model.normal.MetaData
 
-interface BusArrivalInfoInStationBody:ApiBody{
+interface BusArrivalInStationInfoBody:ApiBody{
     val metaData:MetaData
-    val items:ArrayList<BusInfo>
+    val items:ArrayList<out BusInfo>
 }
