@@ -1,6 +1,7 @@
-package com.moonyh.metabus.di
+package com.moonyh.metabus.di.service
 
 import com.moonyh.data.service.StationInfoService
+import com.moonyh.metabus.di.StationInfoRetrofit
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
