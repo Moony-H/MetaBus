@@ -1,7 +1,5 @@
 package com.moonyh.domain.model
 
-import com.moonyh.domain.model.normal.Pageable
-
 interface StationInfo {
     val id:String
     val name:String

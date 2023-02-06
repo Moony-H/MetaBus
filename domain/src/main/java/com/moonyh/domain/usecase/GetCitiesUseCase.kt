@@ -12,7 +12,7 @@ abstract class GetCitiesUseCase : UseCase<CitiesInfoQuery, CitiesInfoBody> {
 
 class GetCitiesUseCaseImpl(private val cityRepository: CityRepository) : GetCitiesUseCase() {
     override suspend fun invoke(query: CitiesInfoQuery): ApiResponse<CitiesInfoBody> {
-        return cityRepository.getCities()
+        return cityRepository.getCities(query)
     }
 
 }
