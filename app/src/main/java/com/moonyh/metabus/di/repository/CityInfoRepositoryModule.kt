@@ -1,7 +1,7 @@
 package com.moonyh.metabus.di.repository
 
-import com.moonyh.data.ArrivalInfoRepositoryImpl
-import com.moonyh.domain.repository.ArrivalInfoRepository
+import com.moonyh.data.CityRepositoryImpl
+import com.moonyh.domain.repository.CityRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,10 +10,10 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class ArrivalInfoRepositoryModule {
+class CityInfoRepositoryModule {
     @Singleton
     @Provides
-    fun providesArrivalInfoRepository(repository:ArrivalInfoRepositoryImpl):ArrivalInfoRepository{
+    fun providesCityInfoRepository(repository: CityRepositoryImpl): CityRepository {
         return repository
     }
 }
