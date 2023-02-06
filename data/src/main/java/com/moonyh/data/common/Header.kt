@@ -1,4 +1,4 @@
-package com.moonyh.data.model.common
+package com.moonyh.data.common
 
 import com.google.gson.annotations.SerializedName
 

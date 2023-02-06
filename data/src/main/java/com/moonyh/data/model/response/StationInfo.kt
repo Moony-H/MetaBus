@@ -1,7 +1,7 @@
 package com.moonyh.data.model.response
 
 import com.google.gson.annotations.SerializedName
-import com.moonyh.data.model.common.Header
+import com.moonyh.data.common.Header
 import com.moonyh.data.model.item.StationInfoItem
 import com.moonyh.domain.model.StationInfo
 import com.moonyh.domain.model.body.StationInfoBody

@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+
 }
 
 apply from: rootProject.file("android.gradle")
@@ -14,6 +16,14 @@ dependencies {
     implementation(AndroidX.CORE_KTX)
     implementation (AndroidX.APP_COMPAT)
     implementation (Google.MATERIAL)
+
+    implementation(Google.HILT_ANDROID)
+    kapt(Google.KAPT_HILT_ANDROID_COMPILER)
+
+    implementation(Libraries.RETROFIT_CONVERTER_GSON)
+    implementation(Libraries.RETROFIT)
+    implementation(Libraries.RETROFIT_COROUTINES_ADAPTER)
+
     testImplementation (Junit.JUNIT)
     androidTestImplementation (AndroidTest.ANDROID_JUNIT)
     androidTestImplementation (AndroidTest.ESPRESSO_CORE)

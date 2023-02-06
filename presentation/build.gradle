@@ -13,6 +13,7 @@ dependencies {
     implementation(AndroidX.CORE_KTX)
     implementation (AndroidX.APP_COMPAT)
     implementation (Google.MATERIAL)
+    implementation(AndroidX.FRAGMENT_KTX)
     testImplementation (Junit.JUNIT)
     androidTestImplementation (AndroidTest.ANDROID_JUNIT)
     androidTestImplementation (AndroidTest.ESPRESSO_CORE)
