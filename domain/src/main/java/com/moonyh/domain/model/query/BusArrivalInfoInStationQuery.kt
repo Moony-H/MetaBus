@@ -7,6 +7,7 @@ data class BusArrivalInfoInStationQuery(
     val cityCode: String,
     val stationId: String,
     val busId: String,
-    val pageNum: Int=1
+    var page: Int=1,
+    var itemCount:Int=10
 ) : ApiQuery
 

@@ -6,5 +6,6 @@ data class StationArrivalInfoQuery(
     val key: String,
     val cityCode: String,
     val stationId: String,
-    val pageNum: Int=1
+    var page: Int=1,
+    var itemCount:Int=10
 ): ApiQuery

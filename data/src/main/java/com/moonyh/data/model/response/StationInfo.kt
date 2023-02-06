@@ -1,17 +1,18 @@
-package com.moonyh.data.model
+package com.moonyh.data.model.response
 
 import com.google.gson.annotations.SerializedName
 import com.moonyh.data.model.common.Header
-import com.moonyh.data.model.item.BusInfoItem
-import com.moonyh.domain.model.body.BusInStationInfoBody
+import com.moonyh.data.model.item.StationInfoItem
+import com.moonyh.domain.model.StationInfo
+import com.moonyh.domain.model.body.StationInfoBody
 import com.moonyh.domain.model.normal.MetaData
 
-data class BusInStationInfo(
+data class StationInfo(
     @SerializedName("header")
     val header: Header,
     @SerializedName("body")
     val body: Body
-) : BusInStationInfoBody {
+) : StationInfoBody {
     override val metaData: MetaData
         get() = object : MetaData {
             override val resultCode: String
@@ -24,7 +25,8 @@ data class BusInStationInfo(
                 get() = body.totalPageCount
 
         }
-    override val items: ArrayList<BusInfoItem>
+
+    override val items: ArrayList<out StationInfo>
         get() = body.items.item
 
     data class Body(
@@ -39,7 +41,7 @@ data class BusInStationInfo(
     ) {
         data class Item(
             @SerializedName("item")
-            val item: ArrayList<BusInfoItem>
+            val item: ArrayList<StationInfoItem>
         )
     }
 }

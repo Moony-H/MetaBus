@@ -1,7 +1,12 @@
 package com.moonyh.domain.model.normal
 
-interface ApiResponse<T> {
-    val code:Int
-    val body:T?
+
+
+
+data class ApiResponse<out T>(
+    val code :Int,
+    val body:T?,
     val errorBody:String?
-}
+)
+
+
