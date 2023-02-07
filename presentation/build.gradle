@@ -14,6 +14,11 @@ dependencies {
     implementation (AndroidX.APP_COMPAT)
     implementation (Google.MATERIAL)
     implementation(AndroidX.FRAGMENT_KTX)
+
+    implementation(Libraries.RETROFIT_COROUTINES_ADAPTER)
+    implementation(Libraries.RETROFIT)
+    implementation(Libraries.RETROFIT_CONVERTER_GSON)
+
     testImplementation (Junit.JUNIT)
     androidTestImplementation (AndroidTest.ANDROID_JUNIT)
     androidTestImplementation (AndroidTest.ESPRESSO_CORE)
