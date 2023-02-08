@@ -18,7 +18,7 @@ interface StationInfoSource {
 class StationInfoSourceImpl @Inject constructor(private val stationInfoService: StationInfoService) :
     StationInfoSource {
     override suspend fun getBusInStation(query: BusInStationQuery): ApiResponse<BusInStationInfo> {
-        val result = stationInfoService.getBusInStation(
+        return stationInfoService.getBusInStation(
             query.key,
             query.itemCount,
             query.page,
@@ -26,11 +26,10 @@ class StationInfoSourceImpl @Inject constructor(private val stationInfoService: 
             query.cityCode,
             query.stationId
         )
-        return ApiResponse(result.code(), result.body(), result.errorBody()?.string())
     }
 
     override suspend fun getStationByName(query: StationInfoByNameQuery): ApiResponse<StationInfo> {
-        val result = stationInfoService.getStationByName(
+        return stationInfoService.getStationByName(
             query.key,
             query.itemCount,
             query.page,
@@ -39,11 +38,10 @@ class StationInfoSourceImpl @Inject constructor(private val stationInfoService: 
             query.stationName,
             query.stationId
         )
-        return ApiResponse(result.code(), result.body(), result.errorBody()?.string())
     }
 
     override suspend fun getStationByGps(query: StationInfoByGpsQuery): ApiResponse<StationInfo> {
-        val result = stationInfoService.getStationByGps(
+        return stationInfoService.getStationByGps(
             query.key,
             query.itemCount,
             query.page,
@@ -51,7 +49,6 @@ class StationInfoSourceImpl @Inject constructor(private val stationInfoService: 
             query.lat,
             query.lng
         )
-        return ApiResponse(result.code(), result.body(), result.errorBody()?.string())
 
     }
 }

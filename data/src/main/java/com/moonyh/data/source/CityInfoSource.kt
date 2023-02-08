@@ -12,8 +12,7 @@ interface CityInfoSource {
 
 class CityInfoSourceImpl @Inject constructor(private val cityInfoService: CityInfoService):CityInfoSource{
     override suspend fun getCities(citiesInfoQuery: CitiesInfoQuery): ApiResponse<CitiesInfo> {
-        val result=cityInfoService.getCities(citiesInfoQuery.key,"json")
-        return ApiResponse(result.code(),result.body(),result.errorBody()?.string())
+        return cityInfoService.getCities(citiesInfoQuery.key, "json")
     }
 
 }

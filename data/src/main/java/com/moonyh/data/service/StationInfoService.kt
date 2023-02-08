@@ -2,6 +2,7 @@ package com.moonyh.data.service
 
 import com.moonyh.data.model.response.BusInStationInfo
 import com.moonyh.data.model.response.StationInfo
+import com.moonyh.domain.model.normal.ApiResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -26,7 +27,7 @@ interface StationInfoService {
         stationName:String,
         @Query("nodeId")
         stationId:String?
-    ):Response<StationInfo>
+    ): ApiResponse<StationInfo>
 
     @GET("getCrdntPrxmtSttnList")
     suspend fun getStationByGps(
@@ -42,7 +43,7 @@ interface StationInfoService {
         latitude:Double,
         @Query("gpsLong")
         longitude:Double,
-    ):Response<StationInfo>
+    ):ApiResponse<StationInfo>
 
     suspend fun getBusInStation(
         @Query("serviceKey")
@@ -58,5 +59,5 @@ interface StationInfoService {
         @Query("nodeid")
         stationId:String,
 
-    ):Response<BusInStationInfo>
+    ):ApiResponse<BusInStationInfo>
 }

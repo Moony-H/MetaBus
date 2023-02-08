@@ -2,7 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-
+    id 'dagger.hilt.android.plugin'
+    id "androidx.navigation.safeargs.kotlin"
 }
 
 apply from: rootProject.file("android.gradle")
@@ -17,8 +18,14 @@ dependencies {
     implementation (AndroidX.APP_COMPAT)
     implementation (Google.MATERIAL)
 
+    implementation(AndroidX.FRAGMENT_KTX)
+
     implementation(Google.HILT_ANDROID)
+    implementation(Google.HILT_NAVIGATION_FRAGMENT)
     kapt(Google.KAPT_HILT_ANDROID_COMPILER)
+
+    implementation(AndroidX.NAVIGATION_FRAGMENT)
+    implementation(AndroidX.NAVIGATION_UI)
 
     implementation(Libraries.RETROFIT_CONVERTER_GSON)
     implementation(Libraries.RETROFIT)

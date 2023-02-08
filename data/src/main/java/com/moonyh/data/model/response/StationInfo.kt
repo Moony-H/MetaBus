@@ -8,40 +8,46 @@ import com.moonyh.domain.model.body.StationInfoBody
 import com.moonyh.domain.model.normal.MetaData
 
 data class StationInfo(
-    @SerializedName("header")
-    val header: Header,
-    @SerializedName("body")
-    val body: Body
+    @SerializedName("response")
+    val response:Response
 ) : StationInfoBody {
     override val metaData: MetaData
         get() = object : MetaData {
             override val resultCode: String
-                get() = header.resultCode
+                get() = response.header.resultCode
             override val resultMessage: String
-                get() = header.resultMessage
+                get() = response.header.resultMessage
             override val nowPageCount: Int
-                get() = body.nowPageCount
+                get() = response.body.nowPageCount
             override val totalPageCount: Int
-                get() = body.totalPageCount
+                get() = response.body.totalPageCount
 
         }
 
     override val items: ArrayList<out StationInfo>
-        get() = body.items.item
+        get() = response.body.items.item
 
-    data class Body(
-        @SerializedName("items")
-        val items: Item,
-        @SerializedName("numOfRows")
-        val itemCount: Int,
-        @SerializedName("pageNo")
-        val nowPageCount: Int,
-        @SerializedName("totalCount")
-        val totalPageCount: Int
-    ) {
-        data class Item(
-            @SerializedName("item")
-            val item: ArrayList<StationInfoItem>
-        )
+    data class Response(
+        @SerializedName("header")
+        val header: Header,
+        @SerializedName("body")
+        val body: Body
+    ){
+        data class Body(
+            @SerializedName("items")
+            val items: Item,
+            @SerializedName("numOfRows")
+            val itemCount: Int,
+            @SerializedName("pageNo")
+            val nowPageCount: Int,
+            @SerializedName("totalCount")
+            val totalPageCount: Int
+        ) {
+            data class Item(
+                @SerializedName("item")
+                val item: ArrayList<StationInfoItem>
+            )
+        }
     }
+
 }

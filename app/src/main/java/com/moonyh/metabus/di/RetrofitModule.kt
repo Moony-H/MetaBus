@@ -1,6 +1,7 @@
 package com.moonyh.metabus.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
+import com.moonyh.data.call.ApiResponseCallAdapterFactory
 import com.moonyh.data.common.TimeOut
 import com.moonyh.data.common.Url
 import dagger.Module
@@ -39,7 +40,7 @@ class RetrofitModule {
         return Retrofit.Builder()
             .baseUrl(Url.ARRIVAL_INFO_SERVICE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
     }
 
@@ -55,7 +56,7 @@ class RetrofitModule {
         return Retrofit.Builder()
             .baseUrl(Url.CITY_INFO_SERVICE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
     }
 
@@ -71,7 +72,7 @@ class RetrofitModule {
         return Retrofit.Builder()
             .baseUrl(Url.STATION_INFO_SERVICE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
     }
 }

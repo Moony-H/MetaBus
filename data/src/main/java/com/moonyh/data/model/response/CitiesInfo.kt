@@ -7,17 +7,15 @@ import com.moonyh.domain.model.body.CitiesInfoBody
 import com.moonyh.domain.model.normal.MetaData
 
 data class CitiesInfo(
-    @SerializedName("header")
-    val header: Header,
-    @SerializedName("body")
-    val body: Body
+    @SerializedName("response")
+    val response:Response
 ):CitiesInfoBody{
     override val metaData: MetaData
         get() = object :MetaData{
             override val resultCode: String
-                get() = header.resultCode
+                get() = response.header.resultCode
             override val resultMessage: String
-                get() = header.resultMessage
+                get() = response.header.resultMessage
             override val nowPageCount: Int
                 get() = -1
             override val totalPageCount: Int
@@ -25,15 +23,23 @@ data class CitiesInfo(
         }
 
     override val items: ArrayList<CityInfoItem>
-        get() = body.items.item
+        get() = response.body.items.item
 
-    data class Body(
-        @SerializedName("items")
-        val items: Item
+    data class Response(
+        @SerializedName("header")
+        val header: Header,
+        @SerializedName("body")
+        val body: Body
     ){
-        data class Item(
-            @SerializedName("item")
-            val item:ArrayList<CityInfoItem>
-        )
+        data class Body(
+            @SerializedName("items")
+            val items: Item
+        ){
+            data class Item(
+                @SerializedName("item")
+                val item:ArrayList<CityInfoItem>
+            )
+        }
     }
+
 }

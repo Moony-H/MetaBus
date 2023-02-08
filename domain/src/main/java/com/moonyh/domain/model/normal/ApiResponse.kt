@@ -3,10 +3,35 @@ package com.moonyh.domain.model.normal
 
 
 
-sealed class ApiResponse<T:ApiBody> {
-    class Success<T:ApiBody>(val data: T) : ApiResponse<T>()
-    class Error<T:ApiBody>(val code:Int, val message:String?):ApiResponse<T>()
-    class Exception<T:ApiBody>(val e:Throwable):ApiResponse<T>()
+sealed class ApiResponse<out T:Any> {
+    class Success<T:Any>(val data: T) : ApiResponse<T>()
+    class Error<T:Any>(val code:Int, val message:String?):ApiResponse<T>()
+    class Exception<T:Any>(val e:Throwable):ApiResponse<T>()
+
+
 }
 
 
+suspend fun <T : Any> ApiResponse<T>.onSuccess(
+    executable: suspend (T) -> Unit
+): ApiResponse<T> = apply {
+    if (this is ApiResponse.Success<T>) {
+        executable(data)
+    }
+}
+
+suspend fun <T : Any> ApiResponse<T>.onError(
+    executable: suspend (code: Int, message: String?) -> Unit
+): ApiResponse<T> = apply {
+    if (this is ApiResponse.Error<T>) {
+        executable(code, message)
+    }
+}
+
+suspend fun <T : Any> ApiResponse<T>.onException(
+    executable: suspend (e: Throwable) -> Unit
+): ApiResponse<T> = apply {
+    if (this is ApiResponse.Exception<T>) {
+        executable(e)
+    }
+}

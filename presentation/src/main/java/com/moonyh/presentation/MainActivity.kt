@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.moonyh.presentation.databinding.ActivityMainBinding
 import com.moonyh.presentation.fragment.SearchFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity:AppCompatActivity() {
 
     private val binding:ActivityMainBinding by lazy {

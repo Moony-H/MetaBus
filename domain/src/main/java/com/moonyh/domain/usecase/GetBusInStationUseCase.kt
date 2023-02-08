@@ -12,6 +12,7 @@ abstract class GetBusInStationUseCase : UseCase<BusInStationQuery, BusInStationI
 class GetBusInStationUseCaseImpl(private val stationRepository: StationRepository) :
     GetBusInStationUseCase() {
     override suspend fun invoke(query: BusInStationQuery): ApiResponse<BusInStationInfoBody> {
+
         return stationRepository.getBusInStation(query)
     }
 }

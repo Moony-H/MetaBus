@@ -13,7 +13,9 @@ object Versions {
     const val FRAGMENT_KTX = "1.3.4"
     const val LIFECYCLE_KTX = "2.3.1"
     const val ROOM = "2.3.0"
+    const val NAVIGATION="2.5.3"
 
+    const val HILT_NAVIGATION_FRAGMENT="1.0.0"
     const val HILT = "2.44"
     const val MATERIAL = "1.7.0"
 
@@ -45,12 +47,15 @@ object AndroidX {
     const val ROOM_RUNTIME            = "androidx.room:room-runtime:${Versions.ROOM}"
     const val ROOM_KTX                = "androidx.room:room-ktx:${Versions.ROOM}"
     const val ROOM_COMPILER           = "androidx.room:room-compiler:${Versions.ROOM}"
+
+    const val NAVIGATION_FRAGMENT     = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
+    const val NAVIGATION_UI          = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
 }
 
 object Google {
     const val HILT_ANDROID          = "com.google.dagger:hilt-android:${Versions.HILT}"
     const val KAPT_HILT_ANDROID_COMPILER = "com.google.dagger:hilt-compiler:${Versions.HILT}"
-
+    const val HILT_NAVIGATION_FRAGMENT = "androidx.hilt:hilt-navigation-fragment:${Versions.HILT_NAVIGATION_FRAGMENT}"
     const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL}"
 }
 

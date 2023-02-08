@@ -2,6 +2,7 @@ package com.moonyh.data.service
 
 import com.moonyh.data.model.response.BusArrivalInStationInfo
 import com.moonyh.data.model.response.StationArrivalInfo
+import com.moonyh.domain.model.normal.ApiResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -24,7 +25,7 @@ interface ArrivalInfoService {
         @Query("nodeId")
         stationId:String,
 
-    ): Response<StationArrivalInfo>
+    ): ApiResponse<StationArrivalInfo>
 
     @GET("getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList")
     suspend fun getBusInStationArrivalInfo(
@@ -44,5 +45,5 @@ interface ArrivalInfoService {
         busId:String,
 
 
-    ):Response<BusArrivalInStationInfo>
+    ):ApiResponse<BusArrivalInStationInfo>
 }
