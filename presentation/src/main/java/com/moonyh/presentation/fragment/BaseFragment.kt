@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.moonyh.domain.usecase.GetStationInfoByNameUseCaseImpl
+import com.moonyh.presentation.custom.FullScreenProgress
 import com.moonyh.presentation.viewmodel.BaseViewModel
+import kotlinx.coroutines.flow.collectLatest
 import retrofit2.HttpException
 
 
@@ -17,11 +20,15 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     protected val binding: T
         get() = _binding!!
 
-    protected abstract val viewModel:BaseViewModel
+    protected abstract val viewModel: BaseViewModel
 
 //    protected val analyticsManager: AnalyticsManager by lazy {
 //        AnalyticsManager.getInstance()
 //    }
+
+    protected val loadingView: FullScreenProgress by lazy {
+        FullScreenProgress(requireContext()).apply { visibility = View.GONE }
+    }
 
     protected abstract val viewBindingInflater: (
         inflater: LayoutInflater,
@@ -39,6 +46,19 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     ): View? {
         _binding = viewBindingInflater(inflater, container, false)
 
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.isLoading.collectLatest {
+                if (it)
+                    setLoadingEnable()
+                else
+                    setLoadingDisable()
+            }
+        }
+
+        val root = binding.root
+        if (root is ViewGroup)
+            root.addView(loadingView)
+
         return binding.root
     }
 
@@ -53,6 +73,14 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun setLoadingEnable() {
+        loadingView.visibility = View.VISIBLE
+    }
+
+    private fun setLoadingDisable() {
+        loadingView.visibility = View.GONE
     }
 
 

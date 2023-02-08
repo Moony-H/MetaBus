@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class SearchFragment:BaseFragment<FragmentSearchBinding>() {
+class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     override val viewBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSearchBinding
         get() = FragmentSearchBinding::inflate
@@ -29,28 +29,24 @@ class SearchFragment:BaseFragment<FragmentSearchBinding>() {
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        Log.e("test","string: ${Key.getKey(requireContext())}")
-
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.cities.collectLatest {
-                Log.e("test","called")
-                if(it==null)
+                Log.e("test", "called")
+                if (it == null)
                     return@collectLatest
-                Log.e("test","$it")
+                Log.e("test", "$it")
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.errorMessageFlow.collectLatest {
-                Log.e("test","error: ${it}")
+                if (it == "")
+                    return@collectLatest
+                Log.e("test", "error: ${it}")
             }
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.isLoading.collectLatest {
-                Log.e("test","is loading: $it")
-            }
-        }
+
 
         viewModel.getCities(requireContext())
 

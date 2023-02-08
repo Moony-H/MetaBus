@@ -21,6 +21,8 @@ abstract class BaseViewModel : ViewModel() {
     private val _errorMessageFlow= MutableStateFlow("")
     val errorMessageFlow=_errorMessageFlow.asStateFlow()
 
+
+
     protected fun <T : ApiQuery, A : ApiBody> runUseCase(
         useCase: UseCase<T, A>,
         query: T,
@@ -40,10 +42,10 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
-    fun enableLoading(){
+    private fun enableLoading(){
         _isLoading.value=true
     }
-    fun disableLoading(){
+    private fun disableLoading(){
         _isLoading.value=false
     }
 
