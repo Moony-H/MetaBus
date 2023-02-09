@@ -3,6 +3,7 @@ package com.moonyh.data.model.response
 import com.google.gson.annotations.SerializedName
 import com.moonyh.data.common.Header
 import com.moonyh.data.model.item.BusInfoItem
+import com.moonyh.domain.model.BusInfo
 import com.moonyh.domain.model.body.BusArrivalInStationInfoBody
 import com.moonyh.domain.model.normal.MetaData
 
@@ -24,8 +25,7 @@ data class BusArrivalInStationInfo(
                 get() = response.body.totalPageCount
 
         }
-    override val items: ArrayList<BusInfoItem>
-        get() = response.body.items.item
+    override val items=response.body.items.item
 
     data class Response(
         @SerializedName("header")

@@ -7,8 +7,8 @@ import com.moonyh.domain.model.query.BusInStationQuery
 import com.moonyh.domain.model.query.StationInfoByGpsQuery
 import com.moonyh.domain.model.query.StationInfoByNameQuery
 
-interface StationRepository:Repository {
-    suspend fun getStationInfoByGPS(stationInfoByGpsQuery: StationInfoByGpsQuery):ApiResponse<StationInfoBody>
-    suspend fun getStationInfoByName(stationInfoByNameQuery: StationInfoByNameQuery):ApiResponse<StationInfoBody>
-    suspend fun getBusInStation(busInStationQuery: BusInStationQuery):ApiResponse<BusInStationInfoBody>
+interface StationRepository : Repository {
+    suspend fun getStationInfoByGPS(stationInfoByGpsQuery: StationInfoByGpsQuery): ApiResponse<StationInfoBody>
+    suspend fun getStationInfoByName(stationInfoByNameQuery: StationInfoByNameQuery): ApiResponse<StationInfoBody>
+    suspend fun getBusInStation(busInStationQuery: BusInStationQuery): ApiResponse<BusInStationInfoBody>
 }

@@ -6,7 +6,7 @@ import com.moonyh.domain.model.body.BusArrivalInStationInfoBody
 import com.moonyh.domain.model.body.StationArrivalInfoBody
 import com.moonyh.domain.model.query.StationArrivalInfoQuery
 
-interface ArrivalInfoRepository:Repository {
+interface ArrivalInfoRepository : Repository {
     suspend fun getStationArrivalInfo(
         stationArrivalInfoQuery: StationArrivalInfoQuery
     ): ApiResponse<StationArrivalInfoBody>

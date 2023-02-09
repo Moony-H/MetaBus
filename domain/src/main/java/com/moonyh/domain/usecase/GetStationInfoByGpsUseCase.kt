@@ -7,9 +7,8 @@ import com.moonyh.domain.repository.StationRepository
 
 
 abstract class GetStationInfoByGpsUseCase :
-    UseCase<StationInfoByGpsQuery, StationInfoBody> {
+    ApiUseCase<StationInfoByGpsQuery, StationInfoBody> {
     abstract override suspend fun invoke(query: StationInfoByGpsQuery): ApiResponse<StationInfoBody>
-
 }
 
 class GetStationInfoByGpsUseCaseImpl(private val stationRepository: StationRepository) :

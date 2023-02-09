@@ -6,9 +6,8 @@ import com.moonyh.domain.model.query.StationInfoByNameQuery
 import com.moonyh.domain.repository.StationRepository
 
 abstract class GetStationInfoByNameUseCase() :
-    UseCase<StationInfoByNameQuery, StationInfoBody> {
+    ApiUseCase<StationInfoByNameQuery, StationInfoBody> {
     abstract override suspend fun invoke(query: StationInfoByNameQuery): ApiResponse<StationInfoBody>
-
 }
 
 class GetStationInfoByNameUseCaseImpl(private val stationRepository: StationRepository) :

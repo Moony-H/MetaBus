@@ -6,7 +6,7 @@ import com.moonyh.domain.model.query.CitiesInfoQuery
 import com.moonyh.domain.repository.CityRepository
 
 
-abstract class GetCitiesUseCase : UseCase<CitiesInfoQuery, CitiesInfoBody> {
+abstract class GetCitiesUseCase : ApiUseCase<CitiesInfoQuery, CitiesInfoBody> {
     abstract override suspend fun invoke(query: CitiesInfoQuery): ApiResponse<CitiesInfoBody>
 }
 

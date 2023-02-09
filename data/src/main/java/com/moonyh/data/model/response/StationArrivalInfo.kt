@@ -10,7 +10,7 @@ data class StationArrivalInfo(
     @SerializedName("response")
     val response: Response
 ) : StationArrivalInfoBody {
-    override val metadata: MetaData
+    override val metaData: MetaData
         get() = object : MetaData {
             override val resultCode: String
                 get() = response.header.resultCode

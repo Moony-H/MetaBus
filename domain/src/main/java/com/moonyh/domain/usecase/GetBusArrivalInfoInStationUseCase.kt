@@ -6,10 +6,10 @@ import com.moonyh.domain.model.query.BusArrivalInfoInStationQuery
 import com.moonyh.domain.repository.ArrivalInfoRepository
 
 abstract class GetBusArrivalInfoInStationUseCase :
-    UseCase<BusArrivalInfoInStationQuery, BusArrivalInStationInfoBody> {
+    ApiUseCase<BusArrivalInfoInStationQuery, BusArrivalInStationInfoBody> {
     abstract override suspend fun invoke(query: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationInfoBody>
-
 }
+
 class GetBusArrivalInfoInStationUseCaseImpl(private val arrivalInfoRepository: ArrivalInfoRepository) :
     GetBusArrivalInfoInStationUseCase() {
     override suspend fun invoke(query: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationInfoBody> {
