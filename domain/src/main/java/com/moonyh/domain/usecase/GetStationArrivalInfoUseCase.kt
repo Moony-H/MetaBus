@@ -4,6 +4,7 @@ import com.moonyh.domain.model.body.StationArrivalInfoBody
 import com.moonyh.domain.model.normal.ApiResponse
 import com.moonyh.domain.model.query.StationArrivalInfoQuery
 import com.moonyh.domain.repository.ArrivalInfoRepository
+import com.moonyh.domain.usecase.base.ApiUseCase
 
 abstract class GetStationArrivalInfoUseCase :
     ApiUseCase<StationArrivalInfoQuery, StationArrivalInfoBody> {

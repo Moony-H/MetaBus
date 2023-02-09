@@ -1,4 +1,4 @@
-package com.moonyh.domain.usecase
+package com.moonyh.domain.usecase.base
 
 import com.moonyh.domain.model.normal.ApiBody
 import com.moonyh.domain.model.normal.ApiResponse

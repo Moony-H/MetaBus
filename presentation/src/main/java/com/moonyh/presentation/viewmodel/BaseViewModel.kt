@@ -3,7 +3,7 @@ package com.moonyh.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.moonyh.domain.model.normal.*
-import com.moonyh.domain.usecase.ApiUseCase
+import com.moonyh.domain.usecase.base.ApiUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,6 +31,25 @@ abstract class BaseViewModel : ViewModel() {
             disableLoading()
             result.onSuccess {
                 resultFlow.emit(it)
+            }.onError { _, message ->
+                _errorMessageFlow.emit("$message")
+            }.onException {
+                _errorMessageFlow.emit("$it")
+            }
+        }
+    }
+
+    protected fun <T : ApiQuery,A:ApiBody<MetaData,Any>> runApiUseCase(
+        apiUseCase: ApiUseCase<T, A>,
+        query: T,
+        onFinished:(A)->Unit
+    ) {
+        enableLoading()
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+            val result = apiUseCase(query)
+            disableLoading()
+            result.onSuccess {
+                onFinished(it)
             }.onError { _, message ->
                 _errorMessageFlow.emit("$message")
             }.onException {
