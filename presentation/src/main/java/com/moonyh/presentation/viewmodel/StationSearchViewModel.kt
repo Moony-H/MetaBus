@@ -29,13 +29,14 @@ class StationSearchViewModel @Inject constructor(
         if(runningThread!=null)
             return
         runningThread=viewModelScope.launch(Dispatchers.IO){
-            delay(100)
+            delay(200)
             val query = StationInfoByNameQuery(Key.getKey(context),cityCode,stationName, page = page)
-            val job=runApiUseCase(getStationByNameUseCase, query){
+            val job=runApiUseCase(getStationByNameUseCase, query,){
+                Log.e("test","items: ${it}")
                 _searchedStation.value= arrayListOf<StationInfo>().apply { addAll(it.items) }
             }
             job.join()
-            delay(100)
+            delay(200)
             runningThread=null
             if(queryText!=stationName)
                 getStation(cityCode, queryText, page)

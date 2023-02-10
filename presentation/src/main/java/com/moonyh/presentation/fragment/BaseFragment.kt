@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
@@ -48,10 +49,16 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.isLoading.collectLatest {
-                if (it)
+                if (it){
                     setLoadingEnable()
-                else
+                    disableTouch()
+                }
+
+                else{
                     setLoadingDisable()
+                    enableTouch()
+                }
+
             }
         }
 
@@ -90,6 +97,15 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     private fun setLoadingDisable() {
         loadingView.visibility = View.GONE
     }
+
+    protected fun disableTouch() {
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
+
+    protected fun enableTouch() {
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
+
 
 
 }

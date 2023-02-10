@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.moonyh.presentation.adapter.StationSearchAdapter
 import com.moonyh.presentation.databinding.FragmentSearchBinding
 import com.moonyh.presentation.viewmodel.MainViewModel
 import com.moonyh.presentation.viewmodel.StationSearchViewModel
@@ -25,6 +27,12 @@ class StationSearchFragment:BaseFragment<FragmentSearchBinding>() {
 
     private val mainViewModel:MainViewModel by viewModels(ownerProducer = {requireActivity()})
 
+    private val adapter:StationSearchAdapter by lazy {
+        StationSearchAdapter{
+            mainViewModel.setStationId(it.id)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,6 +42,10 @@ class StationSearchFragment:BaseFragment<FragmentSearchBinding>() {
 
         binding.layoutTitle.text="정류소를 검색하세요"
 
+        binding.list.adapter=adapter
+        binding.list.layoutManager=LinearLayoutManager(requireContext()).apply {
+            orientation=LinearLayoutManager.VERTICAL
+        }
         binding.searchViewEditText.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {}
@@ -45,10 +57,8 @@ class StationSearchFragment:BaseFragment<FragmentSearchBinding>() {
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.searchedStation.collectLatest {
-
+                adapter.submitList(it)
             }
-
-
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {

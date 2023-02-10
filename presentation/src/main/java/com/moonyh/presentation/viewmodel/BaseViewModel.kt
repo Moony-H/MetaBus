@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 
-abstract class BaseViewModel(application: Application): AndroidViewModel(application) {
+abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
@@ -28,18 +28,22 @@ abstract class BaseViewModel(application: Application): AndroidViewModel(applica
         getApplication()
     }
 
-    protected fun <T : ApiQuery,A:ApiBody<MetaData,Any>> runApiUseCase(
+    protected fun <T : ApiQuery, A : ApiBody<MetaData, Any>> runApiUseCase(
         apiUseCase: ApiUseCase<T, A>,
         query: T,
-        resultFlow: MutableStateFlow<A?>
-    ):Job {
-        enableLoading()
+        loading: Boolean = true,
+        resultFlow: MutableStateFlow<A?>,
+
+    ): Job {
+        if (loading)
+            enableLoading()
         return viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
             val result = apiUseCase(query)
-            disableLoading()
+            if (loading)
+                disableLoading()
             result.onSuccess {
                 resultFlow.emit(it)
-                Log.e("test","onSuccess")
+                Log.e("test", "onSuccess")
             }.onError { _, message ->
                 _errorMessageFlow.emit("$message")
             }.onException {
@@ -48,34 +52,38 @@ abstract class BaseViewModel(application: Application): AndroidViewModel(applica
         }
     }
 
-    protected fun <T : ApiQuery,A:ApiBody<MetaData,Any>> runApiUseCase(
+    protected fun <T : ApiQuery, A : ApiBody<MetaData, Any>> runApiUseCase(
         apiUseCase: ApiUseCase<T, A>,
         query: T,
-        onFinished:(A)->Unit
-    ):Job {
-        enableLoading()
+        loading: Boolean = true,
+        onFinished: (A) -> Unit,
+
+    ): Job {
+        if (loading)
+            enableLoading()
         return viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
             val result = apiUseCase(query)
-            disableLoading()
+            if (loading)
+                disableLoading()
             result.onSuccess {
                 onFinished(it)
             }.onError { _, message ->
                 _errorMessageFlow.emit("$message")
-                Log.e("test","station searched error")
+                Log.e("test", "station searched error")
 
             }.onException {
                 _errorMessageFlow.emit("$it")
-                Log.e("test","station searched exception")
+                Log.e("test", "station searched exception")
 
             }
         }
     }
 
-    private fun enableLoading() {
+    fun enableLoading() {
         _isLoading.value = true
     }
 
-    private fun disableLoading() {
+    fun disableLoading() {
         _isLoading.value = false
     }
 
@@ -83,4 +91,5 @@ abstract class BaseViewModel(application: Application): AndroidViewModel(applica
         CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
         }
+
 }
