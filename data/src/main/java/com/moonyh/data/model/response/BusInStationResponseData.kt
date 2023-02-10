@@ -3,13 +3,15 @@ package com.moonyh.data.model.response
 import com.google.gson.annotations.SerializedName
 import com.moonyh.data.common.Header
 import com.moonyh.data.model.item.BusInfoItem
-import com.moonyh.domain.model.body.StationArrivalInfoBody
+import com.moonyh.domain.model.body.BusInStationInfoBody
 import com.moonyh.domain.model.normal.MetaData
 
-data class StationArrivalInfo(
+data class BusInStationResponseData(
     @SerializedName("response")
-    val response: Response
-) : StationArrivalInfoBody {
+    val response:Response
+
+) : BusInStationInfoBody {
+
     override val metaData: MetaData
         get() = object : MetaData {
             override val resultCode: String
@@ -20,8 +22,8 @@ data class StationArrivalInfo(
                 get() = response.body.nowPageCount
             override val totalPageCount: Int
                 get() = response.body.totalPageCount
-        }
 
+        }
     override val items: ArrayList<BusInfoItem>
         get() = response.body.items.item
 
@@ -30,7 +32,7 @@ data class StationArrivalInfo(
         val header: Header,
         @SerializedName("body")
         val body: Body
-    ) {
+    ){
         data class Body(
             @SerializedName("items")
             val items: Item,

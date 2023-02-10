@@ -56,8 +56,10 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         }
 
         val root = binding.root
-        if (root is ViewGroup)
+        if (root is ViewGroup){
             root.addView(loadingView)
+
+        }
 
         return binding.root
     }
@@ -70,9 +72,15 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
 //        analyticsManager.debugLogScreen(analyticsFragmentName.koreaName,this::class.java.simpleName)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        val root=binding.root
+        if(root is ViewGroup)
+            root.removeView(loadingView)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        _binding = null
     }
 
     private fun setLoadingEnable() {

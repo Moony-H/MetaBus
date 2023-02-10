@@ -10,6 +10,7 @@ import com.moonyh.domain.model.normal.*
 import com.moonyh.domain.usecase.base.ApiUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -31,9 +32,9 @@ abstract class BaseViewModel(application: Application): AndroidViewModel(applica
         apiUseCase: ApiUseCase<T, A>,
         query: T,
         resultFlow: MutableStateFlow<A?>
-    ) {
+    ):Job {
         enableLoading()
-        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+        return viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
             val result = apiUseCase(query)
             disableLoading()
             result.onSuccess {
@@ -51,17 +52,21 @@ abstract class BaseViewModel(application: Application): AndroidViewModel(applica
         apiUseCase: ApiUseCase<T, A>,
         query: T,
         onFinished:(A)->Unit
-    ) {
+    ):Job {
         enableLoading()
-        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+        return viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
             val result = apiUseCase(query)
             disableLoading()
             result.onSuccess {
                 onFinished(it)
             }.onError { _, message ->
                 _errorMessageFlow.emit("$message")
+                Log.e("test","station searched error")
+
             }.onException {
                 _errorMessageFlow.emit("$it")
+                Log.e("test","station searched exception")
+
             }
         }
     }

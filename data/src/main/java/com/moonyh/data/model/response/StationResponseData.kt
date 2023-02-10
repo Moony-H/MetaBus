@@ -7,7 +7,7 @@ import com.moonyh.domain.model.StationInfo
 import com.moonyh.domain.model.body.StationInfoBody
 import com.moonyh.domain.model.normal.MetaData
 
-data class StationInfo(
+data class StationResponseData(
     @SerializedName("response")
     val response:Response
 ) : StationInfoBody {

@@ -2,27 +2,27 @@ package com.moonyh.data.model.response
 
 import com.google.gson.annotations.SerializedName
 import com.moonyh.data.common.Header
-import com.moonyh.data.model.item.CityInfoItem
-import com.moonyh.domain.model.body.CitiesInfoBody
+import com.moonyh.data.model.item.BusInfoItem
+import com.moonyh.domain.model.body.StationArrivalInfoBody
 import com.moonyh.domain.model.normal.MetaData
 
-data class CitiesInfo(
+data class StationArrivalResponseData(
     @SerializedName("response")
-    val response:Response
-):CitiesInfoBody{
+    val response: Response
+) : StationArrivalInfoBody {
     override val metaData: MetaData
-        get() = object :MetaData{
+        get() = object : MetaData {
             override val resultCode: String
                 get() = response.header.resultCode
             override val resultMessage: String
                 get() = response.header.resultMessage
             override val nowPageCount: Int
-                get() = -1
+                get() = response.body.nowPageCount
             override val totalPageCount: Int
-                get() = -1
+                get() = response.body.totalPageCount
         }
 
-    override val items: ArrayList<CityInfoItem>
+    override val items: ArrayList<BusInfoItem>
         get() = response.body.items.item
 
     data class Response(
@@ -30,14 +30,20 @@ data class CitiesInfo(
         val header: Header,
         @SerializedName("body")
         val body: Body
-    ){
+    ) {
         data class Body(
             @SerializedName("items")
-            val items: Item
-        ){
+            val items: Item,
+            @SerializedName("numOfRows")
+            val itemCount: Int,
+            @SerializedName("pageNo")
+            val nowPageCount: Int,
+            @SerializedName("totalCount")
+            val totalPageCount: Int
+        ) {
             data class Item(
                 @SerializedName("item")
-                val item:ArrayList<CityInfoItem>
+                val item: ArrayList<BusInfoItem>
             )
         }
     }

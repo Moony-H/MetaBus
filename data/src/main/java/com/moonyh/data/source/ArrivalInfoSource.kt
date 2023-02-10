@@ -1,5 +1,7 @@
 package com.moonyh.data.source
 
+import com.moonyh.data.model.response.BusArrivalInStationResponseData
+import com.moonyh.data.model.response.StationArrivalResponseData
 import com.moonyh.data.service.ArrivalInfoService
 import com.moonyh.domain.model.body.BusArrivalInStationInfoBody
 import com.moonyh.domain.model.body.StationArrivalInfoBody
@@ -9,13 +11,13 @@ import com.moonyh.domain.model.query.StationArrivalInfoQuery
 import javax.inject.Inject
 
 interface ArrivalInfoSource {
-    suspend fun getBusArrivalInStationInfo(query: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationInfoBody>
-    suspend fun getStationArrivalInfo(query: StationArrivalInfoQuery): ApiResponse<StationArrivalInfoBody>
+    suspend fun getBusArrivalInStationInfo(query: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationResponseData>
+    suspend fun getStationArrivalInfo(query: StationArrivalInfoQuery): ApiResponse<StationArrivalResponseData>
 }
 
 class ArrivalInfoSourceImpl @Inject constructor(private val arrivalInfoService: ArrivalInfoService) :
     ArrivalInfoSource {
-    override suspend fun getBusArrivalInStationInfo(query: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationInfoBody> {
+    override suspend fun getBusArrivalInStationInfo(query: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationResponseData> {
         return arrivalInfoService.getBusInStationArrivalInfo(
             query.key,
             query.itemCount,
@@ -27,7 +29,7 @@ class ArrivalInfoSourceImpl @Inject constructor(private val arrivalInfoService: 
         )
     }
 
-    override suspend fun getStationArrivalInfo(query: StationArrivalInfoQuery): ApiResponse<StationArrivalInfoBody> {
+    override suspend fun getStationArrivalInfo(query: StationArrivalInfoQuery): ApiResponse<StationArrivalResponseData> {
         return arrivalInfoService.getStationArrivalInfo(
             query.key,
             query.itemCount,

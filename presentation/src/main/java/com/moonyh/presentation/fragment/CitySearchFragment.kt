@@ -10,19 +10,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moonyh.presentation.viewmodel.CitySearchViewModel
 import com.moonyh.presentation.adapter.CitySearchAdapter
-import com.moonyh.presentation.databinding.FragmentSearchCityBinding
+import com.moonyh.presentation.databinding.FragmentSearchBinding
 import com.moonyh.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class CitySearchFragment : BaseFragment<FragmentSearchCityBinding>() {
+class CitySearchFragment : BaseFragment<FragmentSearchBinding>() {
 
-    override val viewBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSearchCityBinding
-        get() = FragmentSearchCityBinding::inflate
+    override val viewBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSearchBinding
+        get() = FragmentSearchBinding::inflate
 
     override val viewModel: CitySearchViewModel by viewModels()
     private val mainViewModel: MainViewModel by viewModels (ownerProducer = {requireActivity()})
@@ -30,6 +31,8 @@ class CitySearchFragment : BaseFragment<FragmentSearchCityBinding>() {
     private val adapter:CitySearchAdapter by lazy {
         CitySearchAdapter{
             mainViewModel.setCityCode(it.cityCode)
+            val action=CitySearchFragmentDirections.actionCitySearchFragmentToStationSearchFragment()
+            findNavController().navigate(action)
         }
     }
 
@@ -39,6 +42,8 @@ class CitySearchFragment : BaseFragment<FragmentSearchCityBinding>() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
+
+        binding.layoutTitle.text="도시를 검색하세요"
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.cities.collectLatest {

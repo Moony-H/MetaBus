@@ -1,11 +1,11 @@
 package com.moonyh.domain.model.normal
 
 
-sealed class ApiResponse<out T : Any> {
+sealed class ApiResponse<out T> {
     class Success<T : Any>(val data: T) : ApiResponse<T>()
     class Error<T : Any>(val code: Int, val message: String?) : ApiResponse<T>()
     class Exception<T : Any>(val e: Throwable) : ApiResponse<T>()
-
+    class NoResponse<T: Any>:ApiResponse<T>()
 
 }
 
