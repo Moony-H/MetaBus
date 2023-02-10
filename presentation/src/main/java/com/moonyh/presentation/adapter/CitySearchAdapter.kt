@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.moonyh.domain.model.CityInfo
 import com.moonyh.presentation.databinding.SourceItemSearchBinding
 
-class CitySearchAdapter : ListAdapter<CityInfo, CitySearchAdapter.SearchViewHolder>(CitySearchDiffCallback()) {
+class CitySearchAdapter(private val onClick: (CityInfo) -> Unit) :
+    ListAdapter<CityInfo, CitySearchAdapter.SearchViewHolder>(CitySearchDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         return SearchViewHolder(
@@ -27,7 +28,10 @@ class CitySearchAdapter : ListAdapter<CityInfo, CitySearchAdapter.SearchViewHold
     inner class SearchViewHolder(private val binding: SourceItemSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CityInfo) {
-            binding.title.text=item.cityName
+            binding.title.text = item.cityName
+            binding.root.setOnClickListener {
+                onClick(item)
+            }
         }
     }
 

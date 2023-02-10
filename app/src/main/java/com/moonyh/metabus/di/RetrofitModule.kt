@@ -36,9 +36,11 @@ class RetrofitModule {
             .connectTimeout(TimeOut.TIMEOUT_CONNECT, TimeUnit.SECONDS)
             .readTimeout(TimeOut.TIMEOUT_READ, TimeUnit.SECONDS)
             .writeTimeout(TimeOut.TIMEOUT_WRITE, TimeUnit.SECONDS)
+            .build()
 
         return Retrofit.Builder()
             .baseUrl(Url.ARRIVAL_INFO_SERVICE_URL)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
@@ -52,10 +54,12 @@ class RetrofitModule {
             .connectTimeout(TimeOut.TIMEOUT_CONNECT, TimeUnit.SECONDS)
             .readTimeout(TimeOut.TIMEOUT_READ, TimeUnit.SECONDS)
             .writeTimeout(TimeOut.TIMEOUT_WRITE, TimeUnit.SECONDS)
+            .build()
 
         return Retrofit.Builder()
             .baseUrl(Url.CITY_INFO_SERVICE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
             .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
     }
@@ -68,10 +72,12 @@ class RetrofitModule {
             .connectTimeout(TimeOut.TIMEOUT_CONNECT, TimeUnit.SECONDS)
             .readTimeout(TimeOut.TIMEOUT_READ, TimeUnit.SECONDS)
             .writeTimeout(TimeOut.TIMEOUT_WRITE, TimeUnit.SECONDS)
+            .build()
 
         return Retrofit.Builder()
             .baseUrl(Url.STATION_INFO_SERVICE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
             .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
     }

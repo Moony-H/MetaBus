@@ -1,6 +1,7 @@
 package com.moonyh.metabus.di.usecase
 
 import com.moonyh.domain.repository.StationRepository
+import com.moonyh.domain.usecase.GetStationInfoByNameUseCase
 import com.moonyh.domain.usecase.GetStationInfoByNameUseCaseImpl
 import dagger.Module
 import dagger.Provides
@@ -13,6 +14,6 @@ import javax.inject.Singleton
 class GetStationInfoByNameUseCaseModule {
     @Singleton
     @Provides
-    fun providesGetStationInfoByNameUseCase(repository: StationRepository) =
+    fun providesGetStationInfoByNameUseCase(repository: StationRepository) :GetStationInfoByNameUseCase=
         GetStationInfoByNameUseCaseImpl(repository)
 }

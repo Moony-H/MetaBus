@@ -7,29 +7,30 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.moonyh.presentation.databinding.FragmentSearchBinding
-import com.moonyh.presentation.viewmodel.SearchViewModel
-import com.moonyh.data.common.Key
-import com.moonyh.domain.model.CityInfo
+import com.moonyh.presentation.viewmodel.CitySearchViewModel
 import com.moonyh.presentation.adapter.CitySearchAdapter
-import com.moonyh.presentation.algorithm.BoyerMooreTextSearch
+import com.moonyh.presentation.databinding.FragmentSearchCityBinding
+import com.moonyh.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class SearchFragment : BaseFragment<FragmentSearchBinding>() {
+class CitySearchFragment : BaseFragment<FragmentSearchCityBinding>() {
 
-    override val viewBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSearchBinding
-        get() = FragmentSearchBinding::inflate
+    override val viewBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSearchCityBinding
+        get() = FragmentSearchCityBinding::inflate
 
-    override val viewModel: SearchViewModel by viewModels()
-
+    override val viewModel: CitySearchViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels (ownerProducer = {requireActivity()})
 
     private val adapter:CitySearchAdapter by lazy {
-        CitySearchAdapter()
+        CitySearchAdapter{
+            mainViewModel.setCityCode(it.cityCode)
+        }
     }
 
     override fun onCreateView(
@@ -41,12 +42,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.cities.collectLatest {
-                Log.e("test", "called")
-                if (it == null)
-                    return@collectLatest
-                Log.e("test", "${it.items}")
-                adapter.submitList(it.items as List<CityInfo>?)
-
+                adapter.submitList(it )
             }
         }
 
@@ -54,7 +50,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             viewModel.errorMessageFlow.collectLatest {
                 if (it == "")
                     return@collectLatest
-                Log.e("test", "error: ${it}")
+                Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -63,13 +59,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val text=s.toString()
-                viewModel.cities.value?.let {body->
-                    body.items.forEach {
-
-                        BoyerMooreTextSearch.search(text,it.cityName)
-                    }
-
-                }
+                Log.e("test","text: $text")
+                viewModel.searchCities(text)
 
             }
         })
@@ -79,9 +70,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             orientation=LinearLayoutManager.VERTICAL
         }
 
-
-
-        viewModel.getCities(requireContext())
+        viewModel.getCities()
 
 
         return binding.root

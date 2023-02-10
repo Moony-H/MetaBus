@@ -11,19 +11,21 @@ import kotlin.coroutines.coroutineContext
 abstract class SearchCitiesUseCase {
     abstract suspend fun invokeAsync(
         text: String,
-        cityList: ArrayList<CityInfo>
-    ): Deferred<ArrayList<CityInfo>>
+        cityList: ArrayList<out CityInfo>
+    ): Deferred<ArrayList<out CityInfo>>
 }
 
 class SearchCitiesUseCaseImpl : SearchCitiesUseCase() {
     override suspend fun invokeAsync(
         text: String,
-        cityList: ArrayList<CityInfo>
-    ): Deferred<ArrayList<CityInfo>> = CoroutineScope(coroutineContext).async {
+        cityList: ArrayList<out CityInfo>
+    ): Deferred<ArrayList<out CityInfo>> = CoroutineScope(coroutineContext).async {
+        if(text=="")
+            return@async cityList
         val result = arrayListOf<CityInfo>()
         cityList.forEach {
             val temp = BoyerMooreTextSearch.search(it.cityName, text)
-            if (temp.isNotEmpty())
+            if(temp)
                 result.add(it)
         }
         result
