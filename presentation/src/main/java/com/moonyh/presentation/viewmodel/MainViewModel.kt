@@ -1,6 +1,13 @@
 package com.moonyh.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.moonyh.domain.model.BusInfo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class MainViewModel:ViewModel() {
 
@@ -12,9 +19,8 @@ class MainViewModel:ViewModel() {
     val stationId:String
         get()=_stationId
 
-    private var _busIds= arrayListOf<String>()
-    val busIds:List<String>
-        get()=_busIds
+    private var _selectedBusInfoList= MutableStateFlow(HashMap<String,BusInfo>())
+    val selectedBusInfoList=_selectedBusInfoList.asStateFlow()
 
     fun setCityCode(cityCode:String){
         _cityCode=cityCode
@@ -24,8 +30,20 @@ class MainViewModel:ViewModel() {
         _stationId=stationId
     }
 
-    fun addBusId(busId:String){
-        _busIds.add(busId)
+    fun addSelectedBus(busInfo: BusInfo){
+        viewModelScope.launch(Dispatchers.IO){
+            Log.e("test","added")
+            _selectedBusInfoList.value[busInfo.id]=busInfo
+            Log.e("test","bus info hash: ${_selectedBusInfoList.value}")
+            _selectedBusInfoList.value=(HashMap(_selectedBusInfoList.value))
+        }
+    }
+
+    fun removeSelectedBus(busInfo: BusInfo){
+        viewModelScope.launch(Dispatchers.IO){
+            _selectedBusInfoList.value.remove(busInfo.id)
+            _selectedBusInfoList.value=(HashMap(_selectedBusInfoList.value))
+        }
     }
 
 

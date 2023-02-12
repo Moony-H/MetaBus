@@ -1,5 +1,6 @@
 package com.moonyh.presentation.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -29,9 +30,11 @@ class StationArrivalAdapter(private val onClick: (BusInfo) -> Unit) :
     inner class StationArrivalViewHolder(private val binding: SourceItemStationArrivalBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BusInfo) {
+            val remainTimeString="${(item.remainTimeSec/60)} 분 남음"
+            val remainStationString="${item.remainStation} 정거장 전"
             binding.busNumber.text=item.number
-            binding.remainStation.text=item.remainStation.toString()
-            binding.remainTime.text=(item.remainTimeSec/60).toString()
+            binding.remainStation.text=remainStationString
+            binding.remainTime.text=remainTimeString
             binding.root.setOnClickListener {
                 onClick(item)
             }

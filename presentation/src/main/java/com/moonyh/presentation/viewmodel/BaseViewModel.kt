@@ -69,11 +69,9 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
                 onFinished(it)
             }.onError { _, message ->
                 _errorMessageFlow.emit("$message")
-                Log.e("test", "station searched error")
 
             }.onException {
                 _errorMessageFlow.emit("$it")
-                Log.e("test", "station searched exception")
 
             }
         }

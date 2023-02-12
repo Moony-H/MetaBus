@@ -18,7 +18,7 @@ data class CitiesResponseData(
                 get() = response.header.resultMessage
             override val nowPageCount: Int
                 get() = -1
-            override val totalPageCount: Int
+            override val totalItemCount: Int
                 get() = -1
         }
 

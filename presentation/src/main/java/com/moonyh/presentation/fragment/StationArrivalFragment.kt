@@ -1,6 +1,7 @@
 package com.moonyh.presentation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +13,10 @@ import com.moonyh.presentation.databinding.FragmentStationArrivalBinding
 import com.moonyh.presentation.viewmodel.BaseViewModel
 import com.moonyh.presentation.viewmodel.MainViewModel
 import com.moonyh.presentation.viewmodel.StationArrivalViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
+@AndroidEntryPoint
 class StationArrivalFragment:BaseFragment<FragmentStationArrivalBinding>(){
 
     override val viewBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentStationArrivalBinding
@@ -40,9 +43,13 @@ class StationArrivalFragment:BaseFragment<FragmentStationArrivalBinding>(){
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.stationArrivalInfo.collectLatest {
+                if(it.isEmpty())
+                    return@collectLatest
                 adapter.submitList(it)
             }
         }
+
+        viewModel.startGettingArrivalInfo(mainViewModel.cityCode,mainViewModel.stationId)
 
 
 

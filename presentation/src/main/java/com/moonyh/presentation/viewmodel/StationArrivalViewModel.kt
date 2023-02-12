@@ -1,6 +1,7 @@
 package com.moonyh.presentation.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.moonyh.domain.model.BusInfo
 import com.moonyh.domain.model.query.StationArrivalInfoQuery
@@ -25,10 +26,12 @@ class StationArrivalViewModel @Inject constructor(
     val stationArrivalInfo=_stationArrivalInfo.asStateFlow()
 
     fun startGettingArrivalInfo(cityCode:String,stationId:String){
-        val query=StationArrivalInfoQuery(context.getString(com.moonyh.data.R.string.apiKey),cityCode,stationId)
+        val query=StationArrivalInfoQuery(context.getString(com.moonyh.data.R.string.apiKey),cityCode,stationId, itemCount = 100)
         viewModelScope.launch {
             while(isActive){
                 runApiUseCase(getStationArrivalInfoUseCase,query,false){
+                    Log.e("test","item: ${it}")
+                    Log.e("test","item count: ${it.items.size}")
                     _stationArrivalInfo.value=it.items
                 }
                 delay(10000)

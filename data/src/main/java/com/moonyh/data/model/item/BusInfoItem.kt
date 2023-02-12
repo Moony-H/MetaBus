@@ -26,13 +26,21 @@ data class BusInfoItem(
     val _startStation: String = "",
 
     ) : BusInfo {
-    override val id = _id
-    override val number = _number
-    override val lineType = _lineType
-    override val endStation = _endStation
-    override val startStation = _startStation
-    override val remainStation = _remainStation
-    override val remainTimeSec = _remainTimeSec
-    override val busType = _busType
+    override val id
+        get() = _id
+    override val number
+        get() = _number
+    override val lineType
+        get() = _lineType
+    override val endStation
+        get() = _endStation
+    override val startStation
+        get() = _startStation
+    override val remainStation
+        get() = _remainStation
+    override val remainTimeSec
+        get() = _remainTimeSec
+    override val busType
+        get() = _busType
 
 }

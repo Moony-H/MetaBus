@@ -4,5 +4,5 @@ interface MetaData {
     val resultCode: String
     val resultMessage: String
     val nowPageCount: Int
-    val totalPageCount: Int
+    val totalItemCount: Int
 }

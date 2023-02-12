@@ -19,7 +19,7 @@ data class StationResponseData(
                 get() = response.header.resultMessage
             override val nowPageCount: Int
                 get() = response.body.nowPageCount
-            override val totalPageCount: Int
+            override val totalItemCount: Int
                 get() = response.body.totalPageCount
 
         }
