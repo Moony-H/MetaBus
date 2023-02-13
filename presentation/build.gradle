@@ -1,6 +1,10 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id "androidx.navigation.safeargs.kotlin"
+
 }
 
 apply from: rootProject.file("android.gradle")
@@ -10,15 +14,31 @@ android{
 }
 
 dependencies {
+    implementation(AndroidX.CORE_KTX)
+    implementation (AndroidX.APP_COMPAT)
+    implementation (Google.MATERIAL)
 
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.0'
-    implementation 'com.google.android.material:material:1.7.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation(AndroidX.FRAGMENT_KTX)
+
+    implementation(AndroidX.NAVIGATION_FRAGMENT)
+    implementation(AndroidX.NAVIGATION_UI)
+
+    implementation(Libraries.RETROFIT_COROUTINES_ADAPTER)
+    implementation(Libraries.RETROFIT)
+    implementation(Libraries.RETROFIT_CONVERTER_GSON)
+
+    implementation(Google.HILT_ANDROID)
+    kapt(Google.KAPT_HILT_ANDROID_COMPILER)
+
+    testImplementation (Junit.JUNIT)
+    androidTestImplementation (AndroidTest.ANDROID_JUNIT)
+    androidTestImplementation (AndroidTest.ESPRESSO_CORE)
+
+
 
     implementation project(':domain')
+    implementation project(':data')
+    implementation project(':common')
 
 
 }

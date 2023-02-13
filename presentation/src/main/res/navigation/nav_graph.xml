@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/citySearchFragment"
+    >
+
+    <fragment
+        android:id="@+id/citySearchFragment"
+        android:name="com.moonyh.presentation.fragment.CitySearchFragment"
+        tools:layout="@layout/fragment_search"
+        >
+        <action
+            android:id="@+id/action_citySearchFragment_to_stationSearchFragment"
+            app:destination="@id/stationSearchFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/stationSearchFragment"
+        android:name="com.moonyh.presentation.fragment.StationSearchFragment"
+        tools:layout="@layout/fragment_search"
+        >
+        <action
+            android:id="@+id/action_stationSearchFragment_to_busNumberSearchFragment"
+            app:destination="@id/busNumberSearchFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/stationArrivalFragment"
+        android:name="com.moonyh.presentation.fragment.StationArrivalFragment"
+        tools:layout="@layout/fragment_station_arrival"
+        />
+
+    <fragment
+        android:id="@+id/busNumberSearchFragment"
+        android:name="com.moonyh.presentation.fragment.BusNumberSearchFragment"
+        tools:layout="@layout/fragment_bus_number_search">
+        <action
+            android:id="@+id/action_busNumberSearchFragment_to_stationArrivalFragment"
+            app:destination="@id/stationArrivalFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"
+            />
+    </fragment>
+
+</navigation>
