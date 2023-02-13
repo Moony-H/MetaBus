@@ -26,6 +26,7 @@ dependencies {
     implementation(Libraries.RETROFIT_CONVERTER_GSON)
 
     implementation project(':domain')
+    implementation project(':common')
 
 }
 

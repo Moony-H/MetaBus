@@ -4,7 +4,8 @@ import com.moonyh.domain.model.BusInfo
 import com.moonyh.domain.model.normal.ApiBody
 import com.moonyh.domain.model.normal.MetaData
 
-interface StationArrivalInfoBody:ApiBody {
-    val metadata:MetaData
-    val items:ArrayList<out BusInfo>
+interface StationArrivalInfoBody : ApiBody<MetaData, ArrayList<out BusInfo>> {
+    override val metaData: MetaData
+    override val items: ArrayList<out BusInfo>
 }
+

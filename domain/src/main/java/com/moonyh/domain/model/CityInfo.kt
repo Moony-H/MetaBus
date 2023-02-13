@@ -1,6 +1,7 @@
 package com.moonyh.domain.model
 
-interface CityInfo {
-    val cityCode:String
-    val cityName:String
+//실제 뷰에 노출 시킬 데이터
+interface CityInfo : Info {
+    val cityCode: String
+    val cityName: String
 }

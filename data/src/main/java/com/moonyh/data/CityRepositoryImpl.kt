@@ -7,9 +7,9 @@ import com.moonyh.domain.model.query.CitiesInfoQuery
 import com.moonyh.domain.repository.CityRepository
 import javax.inject.Inject
 
-class CityRepositoryImpl @Inject constructor(private val cityRepository: CityInfoSource):CityRepository {
+class CityRepositoryImpl @Inject constructor(private val cityInfoSource: CityInfoSource):CityRepository {
 
     override suspend fun getCities(cityQuery: CitiesInfoQuery): ApiResponse<CitiesInfoBody> {
-        return cityRepository.getCities(cityQuery)
+        return cityInfoSource.getCities(cityQuery)
     }
 }

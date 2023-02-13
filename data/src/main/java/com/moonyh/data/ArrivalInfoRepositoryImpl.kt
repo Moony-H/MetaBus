@@ -9,7 +9,8 @@ import com.moonyh.domain.model.query.StationArrivalInfoQuery
 import com.moonyh.domain.repository.ArrivalInfoRepository
 import javax.inject.Inject
 
-class ArrivalInfoRepositoryImpl @Inject constructor(private val arrivalInfoSource: ArrivalInfoSource):ArrivalInfoRepository{
+class ArrivalInfoRepositoryImpl @Inject constructor(private val arrivalInfoSource: ArrivalInfoSource) :
+    ArrivalInfoRepository {
 
     override suspend fun getBusArrivalInfoInStation(busArrivalInfoInStationQuery: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationInfoBody> {
         return arrivalInfoSource.getBusArrivalInStationInfo(busArrivalInfoInStationQuery)

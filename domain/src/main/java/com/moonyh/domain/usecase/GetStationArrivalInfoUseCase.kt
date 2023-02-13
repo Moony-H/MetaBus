@@ -1,22 +1,38 @@
 package com.moonyh.domain.usecase
 
-import com.moonyh.domain.model.body.CitiesInfoBody
+import com.moonyh.domain.model.BusInfo
 import com.moonyh.domain.model.body.StationArrivalInfoBody
 import com.moonyh.domain.model.normal.ApiResponse
-import com.moonyh.domain.model.query.CitiesInfoQuery
+import com.moonyh.domain.model.normal.MetaData
 import com.moonyh.domain.model.query.StationArrivalInfoQuery
 import com.moonyh.domain.repository.ArrivalInfoRepository
-import com.moonyh.domain.repository.StationRepository
+import com.moonyh.domain.usecase.base.ApiUseCase
 
 abstract class GetStationArrivalInfoUseCase :
-    UseCase<StationArrivalInfoQuery, StationArrivalInfoBody> {
+    ApiUseCase<StationArrivalInfoQuery, StationArrivalInfoBody> {
     abstract override suspend fun invoke(query: StationArrivalInfoQuery): ApiResponse<StationArrivalInfoBody>
 
 }
 
 class GetStationArrivalInfoUseCaseImpl(private val arrivalInfoRepository: ArrivalInfoRepository) :
     GetStationArrivalInfoUseCase() {
+
+    private val cache=HashMap<String,BusInfo>()
     override suspend fun invoke(query: StationArrivalInfoQuery): ApiResponse<StationArrivalInfoBody> {
-        return arrivalInfoRepository.getStationArrivalInfo(query)
+        val info=arrivalInfoRepository.getStationArrivalInfo(query)
+
+        if(info is ApiResponse.Success<StationArrivalInfoBody>){
+            info.data.items.forEach {
+                if(cache[it.id]==null){
+                    cache[it.id]=it
+                    return@forEach
+                }
+            }
+            return ApiResponse.Success(object :StationArrivalInfoBody{
+                override val metaData: MetaData=info.data.metaData
+                override val items: ArrayList<out BusInfo> =ArrayList(cache.values).apply { sortBy { it.remainTimeSec } }
+            })
+        }
+        return info
     }
 }

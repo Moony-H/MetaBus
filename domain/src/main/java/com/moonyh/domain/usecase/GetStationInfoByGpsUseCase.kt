@@ -4,12 +4,12 @@ import com.moonyh.domain.model.body.StationInfoBody
 import com.moonyh.domain.model.normal.ApiResponse
 import com.moonyh.domain.model.query.StationInfoByGpsQuery
 import com.moonyh.domain.repository.StationRepository
+import com.moonyh.domain.usecase.base.ApiUseCase
 
 
 abstract class GetStationInfoByGpsUseCase :
-    UseCase<StationInfoByGpsQuery, StationInfoBody> {
+    ApiUseCase<StationInfoByGpsQuery, StationInfoBody> {
     abstract override suspend fun invoke(query: StationInfoByGpsQuery): ApiResponse<StationInfoBody>
-
 }
 
 class GetStationInfoByGpsUseCaseImpl(private val stationRepository: StationRepository) :
