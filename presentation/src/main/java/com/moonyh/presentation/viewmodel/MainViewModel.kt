@@ -9,40 +9,47 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class MainViewModel:ViewModel() {
+class MainViewModel : ViewModel() {
 
-    private var _cityCode:String=""
-    val cityCode:String
-        get()=_cityCode
+    private var _cityCode: String = ""
+    val cityCode: String
+        get() = _cityCode
 
-    private var _stationId:String=""
-    val stationId:String
-        get()=_stationId
+    private var _stationId: String = ""
+    val stationId: String
+        get() = _stationId
 
-    private var _selectedBusInfoList= MutableStateFlow(HashMap<String,BusInfo>())
-    val selectedBusInfoList=_selectedBusInfoList.asStateFlow()
+    private val _selectedBusInfoList = MutableStateFlow(HashMap<String, BusInfo>())
+    val selectedBusInfoList = _selectedBusInfoList.asStateFlow()
 
-    fun setCityCode(cityCode:String){
-        _cityCode=cityCode
+    fun setCityCode(cityCode: String) {
+        _cityCode = cityCode
     }
 
-    fun setStationId(stationId:String){
-        _stationId=stationId
+    fun setStationId(stationId: String) {
+        _stationId = stationId
     }
 
-    fun addSelectedBus(busInfo: BusInfo){
-        viewModelScope.launch(Dispatchers.IO){
-            Log.e("test","added")
-            _selectedBusInfoList.value[busInfo.id]=busInfo
-            Log.e("test","bus info hash: ${_selectedBusInfoList.value}")
-            _selectedBusInfoList.value=(HashMap(_selectedBusInfoList.value))
+    fun addSelectedBus(busInfo: BusInfo) {
+        viewModelScope.launch(Dispatchers.IO) {
+
+            val temp = HashMap<String, BusInfo>()
+            _selectedBusInfoList.value.keys.forEach {
+                temp[it] = _selectedBusInfoList.value[it]!!
+            }
+            temp[busInfo.id]=busInfo
+            _selectedBusInfoList.value = temp
         }
     }
 
-    fun removeSelectedBus(busInfo: BusInfo){
-        viewModelScope.launch(Dispatchers.IO){
-            _selectedBusInfoList.value.remove(busInfo.id)
-            _selectedBusInfoList.value=(HashMap(_selectedBusInfoList.value))
+    fun removeSelectedBus(busInfo: BusInfo) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val temp = HashMap<String, BusInfo>()
+            _selectedBusInfoList.value.keys.forEach {
+                temp[it] = _selectedBusInfoList.value[it]!!
+            }
+            temp.remove(busInfo.id)
+            _selectedBusInfoList.value = temp
         }
     }
 

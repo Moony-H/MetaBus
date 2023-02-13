@@ -35,7 +35,7 @@ class SelectedBusNumberAdapter(private val onDeleteClick: (BusInfo) -> Unit) :
             }
 
             binding.busNumber.text = item.number
-            binding.busType.text = item.busType
+            binding.busType.text = item.lineType
             binding.destination.text = item.endStation
         }
     }

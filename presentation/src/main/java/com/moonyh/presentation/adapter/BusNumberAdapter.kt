@@ -33,7 +33,7 @@ class BusNumberAdapter(private val onClick:(BusInfo)->Unit) :
             }
             val destination="${busInfo.startStation} -> ${busInfo.endStation}"
             binding.busNumber.text = busInfo.number
-            binding.busType.text=busInfo.busType
+            binding.busType.text=busInfo.lineType
             binding.destination.text=destination
         }
     }

@@ -24,17 +24,17 @@ class BusNumberSearchFragment : BaseFragment<FragmentBusNumberSearchBinding>() {
         get() = FragmentBusNumberSearchBinding::inflate
 
     override val viewModel: BusNumberSearchViewModel by viewModels()
-    private val mainViewMode: MainViewModel by viewModels(ownerProducer = { requireActivity() })
+    private val mainViewModel: MainViewModel by viewModels(ownerProducer = { requireActivity() })
 
     private val busNumberAdapter: BusNumberAdapter by lazy {
         BusNumberAdapter {
-            mainViewMode.addSelectedBus(it)
+            mainViewModel.addSelectedBus(it)
         }
     }
 
-    private val selectedBusNumberAdapter:SelectedBusNumberAdapter by lazy {
-        SelectedBusNumberAdapter{
-            mainViewMode.removeSelectedBus(it)
+    private val selectedBusNumberAdapter: SelectedBusNumberAdapter by lazy {
+        SelectedBusNumberAdapter {
+            mainViewModel.removeSelectedBus(it)
         }
     }
 
@@ -44,6 +44,16 @@ class BusNumberSearchFragment : BaseFragment<FragmentBusNumberSearchBinding>() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
+
+        binding.listBus.adapter = busNumberAdapter
+        binding.listBus.layoutManager = LinearLayoutManager(requireContext()).apply {
+            orientation = LinearLayoutManager.VERTICAL
+        }
+
+        binding.listSelectedBus.adapter = selectedBusNumberAdapter
+        binding.listSelectedBus.layoutManager = LinearLayoutManager(requireContext()).apply {
+            orientation = LinearLayoutManager.HORIZONTAL
+        }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.searchedBusList.collectLatest {
@@ -55,29 +65,22 @@ class BusNumberSearchFragment : BaseFragment<FragmentBusNumberSearchBinding>() {
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            mainViewMode.selectedBusInfoList.collectLatest {
-                Log.e("test","bus id collected")
-                selectedBusNumberAdapter.submitList(ArrayList(it.values))
+            mainViewModel.selectedBusInfoList.collectLatest {
+                val list=ArrayList(it.values)
+
+                selectedBusNumberAdapter.submitList(list)
             }
         }
 
-        binding.listBus.adapter=busNumberAdapter
-        binding.listBus.layoutManager=LinearLayoutManager(requireContext()).apply {
-            orientation=LinearLayoutManager.VERTICAL
-        }
 
-        binding.listSelectedBus.adapter=selectedBusNumberAdapter
-        binding.listSelectedBus.layoutManager=LinearLayoutManager(requireContext()).apply {
-            orientation=LinearLayoutManager.HORIZONTAL
-        }
 
         binding.btnNext.setOnClickListener {
-            val action=BusNumberSearchFragmentDirections.actionBusNumberSearchFragmentToStationArrivalFragment()
+            val action =
+                BusNumberSearchFragmentDirections.actionBusNumberSearchFragmentToStationArrivalFragment()
             findNavController().navigate(action)
-
         }
 
-        viewModel.getBusInStation(mainViewMode.cityCode,mainViewMode.stationId)
+        viewModel.getBusInStation(mainViewModel.cityCode, mainViewModel.stationId)
 
 
         return binding.root
