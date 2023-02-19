@@ -13,16 +13,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moonyh.presentation.adapter.StationSearchAdapter
-import com.moonyh.presentation.databinding.FragmentSearchBinding
+import com.moonyh.presentation.databinding.FragmentSearchStationBinding
 import com.moonyh.presentation.viewmodel.MainViewModel
 import com.moonyh.presentation.viewmodel.StationSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class StationSearchFragment:BaseFragment<FragmentSearchBinding>() {
-    override val viewBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSearchBinding
-        get() = FragmentSearchBinding::inflate
+class StationSearchFragment:BaseFragment<FragmentSearchStationBinding>() {
+    override val viewBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSearchStationBinding
+        get() = FragmentSearchStationBinding::inflate
 
     override val viewModel: StationSearchViewModel by viewModels()
 

@@ -11,6 +11,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="32dp"
+        android:text="정류소를 검색하세요"
         />
 
     <com.google.android.material.card.MaterialCardView

@@ -23,16 +23,13 @@ dependencies {
     implementation(AndroidX.NAVIGATION_FRAGMENT)
     implementation(AndroidX.NAVIGATION_UI)
 
-    implementation(Libraries.RETROFIT_COROUTINES_ADAPTER)
-    implementation(Libraries.RETROFIT)
-    implementation(Libraries.RETROFIT_CONVERTER_GSON)
-
     implementation(Google.HILT_ANDROID)
     kapt(Google.KAPT_HILT_ANDROID_COMPILER)
 
     testImplementation (Junit.JUNIT)
     androidTestImplementation (AndroidTest.ANDROID_JUNIT)
     androidTestImplementation (AndroidTest.ESPRESSO_CORE)
+
 
 
 

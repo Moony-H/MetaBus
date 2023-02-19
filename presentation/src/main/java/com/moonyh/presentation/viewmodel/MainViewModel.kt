@@ -5,8 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.moonyh.domain.model.BusInfo
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
@@ -20,7 +19,9 @@ class MainViewModel : ViewModel() {
         get() = _stationId
 
     private val _selectedBusInfoList = MutableStateFlow(HashMap<String, BusInfo>())
-    val selectedBusInfoList = _selectedBusInfoList.asStateFlow()
+    val selectedBusInfoList = _selectedBusInfoList.map {
+        ArrayList(it.values)
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), arrayListOf())//_selectedBusInfoList.asStateFlow()
 
     fun setCityCode(cityCode: String) {
         _cityCode = cityCode
