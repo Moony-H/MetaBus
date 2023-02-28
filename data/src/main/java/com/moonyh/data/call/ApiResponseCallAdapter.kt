@@ -1,6 +1,6 @@
 package com.moonyh.data.call
 
-import com.moonyh.domain.model.normal.ApiResponse
+import com.moonyh.domain.model.api.ApiResponse
 import retrofit2.Call
 import retrofit2.CallAdapter
 import java.lang.reflect.Type

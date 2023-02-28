@@ -3,9 +3,7 @@ package com.moonyh.data.source
 import com.moonyh.data.model.response.BusArrivalInStationResponseData
 import com.moonyh.data.model.response.StationArrivalResponseData
 import com.moonyh.data.service.ArrivalInfoService
-import com.moonyh.domain.model.api.body.BusArrivalInStationInfoBody
-import com.moonyh.domain.model.api.body.StationArrivalInfoBody
-import com.moonyh.domain.model.normal.ApiResponse
+import com.moonyh.domain.model.api.ApiResponse
 import com.moonyh.domain.model.api.query.BusArrivalInfoInStationQuery
 import com.moonyh.domain.model.api.query.StationArrivalInfoQuery
 import javax.inject.Inject

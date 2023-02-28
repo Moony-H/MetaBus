@@ -1,9 +1,9 @@
 package com.moonyh.data
 
 import com.moonyh.data.source.StationInfoSource
+import com.moonyh.domain.model.api.ApiResponse
 import com.moonyh.domain.model.api.body.BusInStationInfoBody
 import com.moonyh.domain.model.api.body.StationInfoBody
-import com.moonyh.domain.model.normal.ApiResponse
 import com.moonyh.domain.model.api.query.BusInStationQuery
 import com.moonyh.domain.model.api.query.StationInfoByGpsQuery
 import com.moonyh.domain.model.api.query.StationInfoByNameQuery

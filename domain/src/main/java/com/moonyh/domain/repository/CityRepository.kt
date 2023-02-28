@@ -1,6 +1,6 @@
 package com.moonyh.domain.repository
 
-import com.moonyh.domain.model.normal.ApiResponse
+import com.moonyh.domain.model.api.ApiResponse
 import com.moonyh.domain.model.api.body.CitiesInfoBody
 import com.moonyh.domain.model.api.query.CitiesInfoQuery
 

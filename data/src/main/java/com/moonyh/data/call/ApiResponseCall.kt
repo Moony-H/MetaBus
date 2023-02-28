@@ -1,6 +1,6 @@
 package com.moonyh.data.call
 
-import com.moonyh.domain.model.normal.ApiResponse
+import com.moonyh.domain.model.api.ApiResponse
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call

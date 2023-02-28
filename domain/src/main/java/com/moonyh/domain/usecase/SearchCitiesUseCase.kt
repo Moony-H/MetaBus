@@ -1,6 +1,5 @@
 package com.moonyh.domain.usecase
 
-import com.moonyh.domain.algorithm.BoyerMooreTextSearch
 import com.moonyh.domain.model.info.CityInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
@@ -19,12 +18,11 @@ class SearchCitiesUseCaseImpl : SearchCitiesUseCase() {
         text: String,
         cityList: ArrayList<out CityInfo>
     ): Deferred<ArrayList<out CityInfo>> = CoroutineScope(coroutineContext).async {
-        if(text=="")
+        if (text == "")
             return@async cityList
         val result = arrayListOf<CityInfo>()
         cityList.forEach {
-            val temp = BoyerMooreTextSearch.search(it.cityName, text)
-            if(temp)
+            if (text in it.cityName)
                 result.add(it)
         }
         result

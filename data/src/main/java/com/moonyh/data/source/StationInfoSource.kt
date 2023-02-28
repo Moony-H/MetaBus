@@ -3,7 +3,7 @@ package com.moonyh.data.source
 import com.moonyh.data.model.response.BusInStationResponseData
 import com.moonyh.data.model.response.StationResponseData
 import com.moonyh.data.service.StationInfoService
-import com.moonyh.domain.model.normal.ApiResponse
+import com.moonyh.domain.model.api.ApiResponse
 import com.moonyh.domain.model.api.query.BusInStationQuery
 import com.moonyh.domain.model.api.query.StationInfoByGpsQuery
 import com.moonyh.domain.model.api.query.StationInfoByNameQuery

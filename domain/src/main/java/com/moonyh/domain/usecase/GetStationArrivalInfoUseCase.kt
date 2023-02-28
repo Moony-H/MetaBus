@@ -1,8 +1,8 @@
 package com.moonyh.domain.usecase
 
+import com.moonyh.domain.model.api.ApiResponse
 import com.moonyh.domain.model.info.BusInfo
 import com.moonyh.domain.model.api.body.StationArrivalInfoBody
-import com.moonyh.domain.model.normal.ApiResponse
 import com.moonyh.domain.model.api.MetaData
 import com.moonyh.domain.model.api.query.StationArrivalInfoQuery
 import com.moonyh.domain.repository.ArrivalInfoRepository

@@ -1,7 +1,7 @@
 package com.moonyh.domain.usecase
 
+import com.moonyh.domain.model.api.ApiResponse
 import com.moonyh.domain.model.api.body.BusInStationInfoBody
-import com.moonyh.domain.model.normal.ApiResponse
 import com.moonyh.domain.model.api.query.BusInStationQuery
 import com.moonyh.domain.repository.StationRepository
 import com.moonyh.domain.usecase.base.ApiUseCase

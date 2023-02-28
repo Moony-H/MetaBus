@@ -8,7 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.moonyh.domain.model.api.MetaData
 import com.moonyh.domain.model.api.base.ApiBody
 import com.moonyh.domain.model.api.base.ApiQuery
-import com.moonyh.domain.model.normal.*
+import com.moonyh.domain.model.api.onError
+import com.moonyh.domain.model.api.onException
+import com.moonyh.domain.model.api.onSuccess
 import com.moonyh.domain.usecase.base.ApiUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers

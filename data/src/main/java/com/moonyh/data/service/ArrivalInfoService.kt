@@ -2,7 +2,7 @@ package com.moonyh.data.service
 
 import com.moonyh.data.model.response.BusArrivalInStationResponseData
 import com.moonyh.data.model.response.StationArrivalResponseData
-import com.moonyh.domain.model.normal.ApiResponse
+import com.moonyh.domain.model.api.ApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
