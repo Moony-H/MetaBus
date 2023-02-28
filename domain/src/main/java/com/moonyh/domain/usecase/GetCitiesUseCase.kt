@@ -1,8 +1,8 @@
 package com.moonyh.domain.usecase
 
-import com.moonyh.domain.model.body.CitiesInfoBody
+import com.moonyh.domain.model.api.body.CitiesInfoBody
 import com.moonyh.domain.model.normal.ApiResponse
-import com.moonyh.domain.model.query.CitiesInfoQuery
+import com.moonyh.domain.model.api.query.CitiesInfoQuery
 import com.moonyh.domain.repository.CityRepository
 import com.moonyh.domain.usecase.base.ApiUseCase
 

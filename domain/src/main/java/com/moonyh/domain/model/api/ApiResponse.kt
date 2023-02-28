@@ -1,4 +1,4 @@
-package com.moonyh.domain.model.normal
+package com.moonyh.domain.model.api
 
 
 sealed class ApiResponse<out T> {

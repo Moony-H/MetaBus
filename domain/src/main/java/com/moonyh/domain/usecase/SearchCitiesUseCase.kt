@@ -1,11 +1,10 @@
 package com.moonyh.domain.usecase
 
 import com.moonyh.domain.algorithm.BoyerMooreTextSearch
-import com.moonyh.domain.model.CityInfo
+import com.moonyh.domain.model.info.CityInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import kotlin.coroutines.coroutineContext
 
 abstract class SearchCitiesUseCase {

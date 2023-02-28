@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.moonyh.domain.model.CityInfo
+import com.moonyh.domain.model.info.CityInfo
 import com.moonyh.presentation.databinding.SourceItemSearchBinding
 
 class CitySearchAdapter(private val onClick: (CityInfo) -> Unit) :

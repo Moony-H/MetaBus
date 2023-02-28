@@ -1,11 +1,11 @@
 package com.moonyh.data
 
 import com.moonyh.data.source.ArrivalInfoSource
-import com.moonyh.domain.model.body.BusArrivalInStationInfoBody
-import com.moonyh.domain.model.body.StationArrivalInfoBody
+import com.moonyh.domain.model.api.body.BusArrivalInStationInfoBody
+import com.moonyh.domain.model.api.body.StationArrivalInfoBody
 import com.moonyh.domain.model.normal.ApiResponse
-import com.moonyh.domain.model.query.BusArrivalInfoInStationQuery
-import com.moonyh.domain.model.query.StationArrivalInfoQuery
+import com.moonyh.domain.model.api.query.BusArrivalInfoInStationQuery
+import com.moonyh.domain.model.api.query.StationArrivalInfoQuery
 import com.moonyh.domain.repository.ArrivalInfoRepository
 import javax.inject.Inject
 

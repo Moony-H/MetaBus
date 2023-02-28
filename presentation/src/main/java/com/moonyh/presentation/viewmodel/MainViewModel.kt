@@ -1,9 +1,8 @@
 package com.moonyh.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.moonyh.domain.model.BusInfo
+import com.moonyh.domain.model.info.BusInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

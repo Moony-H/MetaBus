@@ -1,6 +1,5 @@
 package com.moonyh.data.call
 
-import com.moonyh.domain.model.normal.ApiBody
 import com.moonyh.domain.model.normal.ApiResponse
 import retrofit2.Call
 import retrofit2.CallAdapter

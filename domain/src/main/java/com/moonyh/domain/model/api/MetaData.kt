@@ -1,4 +1,4 @@
-package com.moonyh.domain.model.normal
+package com.moonyh.domain.model.api
 
 interface MetaData {
     val resultCode: String
