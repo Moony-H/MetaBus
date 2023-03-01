@@ -8,3 +8,5 @@ interface BusInStationInfoBody : ApiBody<MetaData, ArrayList<out BusInfo>> {
     override val metaData: MetaData
     override val items: ArrayList<out BusInfo>
 }
+
+

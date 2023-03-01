@@ -8,11 +8,11 @@ import com.moonyh.domain.usecase.base.ApiUseCase
 
 
 abstract class GetCitiesUseCase : ApiUseCase<CitiesInfoQuery, CitiesInfoBody> {
-    abstract override suspend fun invoke(query: CitiesInfoQuery): ApiResponse<CitiesInfoBody>
+    abstract override suspend operator fun invoke(query: CitiesInfoQuery): ApiResponse<CitiesInfoBody>
 }
 
 class GetCitiesUseCaseImpl(private val cityRepository: CityRepository) : GetCitiesUseCase() {
-    override suspend fun invoke(query: CitiesInfoQuery): ApiResponse<CitiesInfoBody> {
+    override suspend operator fun invoke(query: CitiesInfoQuery): ApiResponse<CitiesInfoBody> {
         return cityRepository.getCities(query)
     }
 

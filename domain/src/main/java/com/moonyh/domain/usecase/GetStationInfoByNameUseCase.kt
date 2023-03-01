@@ -8,12 +8,12 @@ import com.moonyh.domain.usecase.base.ApiUseCase
 
 abstract class GetStationInfoByNameUseCase() :
     ApiUseCase<StationInfoByNameQuery, StationInfoBody> {
-    abstract override suspend fun invoke(query: StationInfoByNameQuery): ApiResponse<StationInfoBody>
+    abstract override suspend operator fun invoke(query: StationInfoByNameQuery): ApiResponse<StationInfoBody>
 }
 
 class GetStationInfoByNameUseCaseImpl(private val stationRepository: StationRepository) :
     GetStationInfoByNameUseCase() {
-    override suspend fun invoke(query: StationInfoByNameQuery): ApiResponse<StationInfoBody> {
+    override suspend operator fun invoke(query: StationInfoByNameQuery): ApiResponse<StationInfoBody> {
         val response=stationRepository.getStationInfoByName(query)
         if(response is ApiResponse.Exception<StationInfoBody>){
             val message=response.e.message

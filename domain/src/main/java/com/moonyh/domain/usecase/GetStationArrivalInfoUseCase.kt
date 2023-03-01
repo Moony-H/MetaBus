@@ -10,7 +10,7 @@ import com.moonyh.domain.usecase.base.ApiUseCase
 
 abstract class GetStationArrivalInfoUseCase :
     ApiUseCase<StationArrivalInfoQuery, StationArrivalInfoBody> {
-    abstract override suspend fun invoke(query: StationArrivalInfoQuery): ApiResponse<StationArrivalInfoBody>
+    abstract override suspend operator fun invoke(query: StationArrivalInfoQuery): ApiResponse<StationArrivalInfoBody>
 
 }
 
@@ -18,7 +18,7 @@ class GetStationArrivalInfoUseCaseImpl(private val arrivalInfoRepository: Arriva
     GetStationArrivalInfoUseCase() {
 
     private val cache=HashMap<String, BusInfo>()
-    override suspend fun invoke(query: StationArrivalInfoQuery): ApiResponse<StationArrivalInfoBody> {
+    override suspend operator fun invoke(query: StationArrivalInfoQuery): ApiResponse<StationArrivalInfoBody> {
         val info=arrivalInfoRepository.getStationArrivalInfo(query)
 
         if(info is ApiResponse.Success<StationArrivalInfoBody>){

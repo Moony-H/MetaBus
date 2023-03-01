@@ -7,12 +7,12 @@ import com.moonyh.domain.repository.StationRepository
 import com.moonyh.domain.usecase.base.ApiUseCase
 
 abstract class GetBusInStationUseCase : ApiUseCase<BusInStationQuery, BusInStationInfoBody> {
-    abstract override suspend fun invoke(query: BusInStationQuery): ApiResponse<BusInStationInfoBody>
+    abstract override suspend operator fun invoke(query: BusInStationQuery): ApiResponse<BusInStationInfoBody>
 }
 
 class GetBusInStationUseCaseImpl(private val stationRepository: StationRepository) :
     GetBusInStationUseCase() {
-    override suspend fun invoke(query: BusInStationQuery): ApiResponse<BusInStationInfoBody> {
+    override suspend operator fun invoke(query: BusInStationQuery): ApiResponse<BusInStationInfoBody> {
         return stationRepository.getBusInStation(query)
     }
 }

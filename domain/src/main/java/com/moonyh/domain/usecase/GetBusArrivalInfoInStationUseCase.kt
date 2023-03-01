@@ -8,12 +8,12 @@ import com.moonyh.domain.usecase.base.ApiUseCase
 
 abstract class GetBusArrivalInfoInStationUseCase :
     ApiUseCase<BusArrivalInfoInStationQuery, BusArrivalInStationInfoBody> {
-    abstract override suspend fun invoke(query: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationInfoBody>
+    abstract override suspend operator fun invoke(query: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationInfoBody>
 }
 
 class GetBusArrivalInfoInStationUseCaseImpl(private val arrivalInfoRepository: ArrivalInfoRepository) :
     GetBusArrivalInfoInStationUseCase() {
-    override suspend fun invoke(query: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationInfoBody> {
+    override suspend operator fun invoke(query: BusArrivalInfoInStationQuery): ApiResponse<BusArrivalInStationInfoBody> {
         return arrivalInfoRepository.getBusArrivalInfoInStation(query)
     }
 

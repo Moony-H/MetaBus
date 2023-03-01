@@ -1,12 +1,13 @@
 package com.moonyh.domain.usecase
 
 import com.moonyh.domain.model.info.CityInfo
+import com.moonyh.domain.usecase.base.UseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlin.coroutines.coroutineContext
 
-abstract class SearchCitiesUseCase {
+abstract class SearchCitiesUseCase :UseCase{
     abstract suspend fun invokeAsync(
         text: String,
         cityList: ArrayList<out CityInfo>
