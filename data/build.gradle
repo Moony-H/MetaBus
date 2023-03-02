@@ -25,6 +25,10 @@ dependencies {
     implementation(Libraries.RETROFIT_COROUTINES_ADAPTER)
     implementation(Libraries.RETROFIT_CONVERTER_GSON)
 
+    annotationProcessor(AndroidX.ROOM_COMPILER)
+    implementation(AndroidX.ROOM_RUNTIME)
+    kapt(AndroidX.ROOM_KAPT)
+
     implementation project(':domain')
     implementation project(':common')
 

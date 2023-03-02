@@ -12,7 +12,6 @@ import com.moonyh.domain.usecase.GetStationInfoByNameUseCaseImpl
 import com.moonyh.presentation.custom.FullScreenProgress
 import com.moonyh.presentation.viewmodel.BaseViewModel
 import kotlinx.coroutines.flow.collectLatest
-import retrofit2.HttpException
 
 
 abstract class BaseFragment<T : ViewBinding> : Fragment() {

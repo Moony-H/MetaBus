@@ -12,7 +12,7 @@ object Versions {
     const val ACTIVITY_KTX = "1.2.3"
     const val FRAGMENT_KTX = "1.3.4"
     const val LIFECYCLE_KTX = "2.3.1"
-    const val ROOM = "2.3.0"
+    const val ROOM = "2.5.0"
     const val NAVIGATION="2.5.3"
 
     const val HILT_NAVIGATION_FRAGMENT="1.0.0"
@@ -45,8 +45,12 @@ object AndroidX {
     const val LIFECYCLE_LIVEDATA_KTX  = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIFECYCLE_KTX}"
 
     const val ROOM_RUNTIME            = "androidx.room:room-runtime:${Versions.ROOM}"
-    const val ROOM_KTX                = "androidx.room:room-ktx:${Versions.ROOM}"
     const val ROOM_COMPILER           = "androidx.room:room-compiler:${Versions.ROOM}"
+
+    // To use Kotlin annotation processing tool (kapt)
+    const val ROOM_KAPT ="androidx.room:room-compiler:${Versions.ROOM}"
+    // To use Kotlin Symbol Processing (KSP)
+    const val ROOM_KSP ="androidx.room:room-compiler:${Versions.ROOM}"
 
     const val NAVIGATION_FRAGMENT     = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
     const val NAVIGATION_UI          = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"

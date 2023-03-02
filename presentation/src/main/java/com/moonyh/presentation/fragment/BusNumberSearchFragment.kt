@@ -13,7 +13,7 @@ import com.moonyh.presentation.adapter.BusNumberAdapter
 import com.moonyh.presentation.adapter.SelectedBusNumberAdapter
 import com.moonyh.presentation.databinding.FragmentBusNumberSearchBinding
 import com.moonyh.presentation.viewmodel.BusNumberSearchViewModel
-import com.moonyh.presentation.viewmodel.MainViewModel
+import com.moonyh.presentation.viewmodel.   MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -64,13 +64,14 @@ class BusNumberSearchFragment : BaseFragment<FragmentBusNumberSearchBinding>() {
             }
         }
 
+
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             mainViewModel.selectedBusInfoList.collectLatest {
-                val list=ArrayList(it.values)
-
-                selectedBusNumberAdapter.submitList(list)
+                selectedBusNumberAdapter.submitList(it)
             }
         }
+
+
 
 
 

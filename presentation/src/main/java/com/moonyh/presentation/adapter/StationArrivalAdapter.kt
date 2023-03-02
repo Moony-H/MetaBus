@@ -1,12 +1,11 @@
 package com.moonyh.presentation.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.moonyh.domain.model.BusInfo
+import com.moonyh.domain.model.info.BusInfo
 import com.moonyh.presentation.databinding.SourceItemStationArrivalBinding
 
 

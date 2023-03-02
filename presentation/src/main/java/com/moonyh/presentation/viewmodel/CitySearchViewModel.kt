@@ -1,13 +1,12 @@
 package com.moonyh.presentation.viewmodel
 
 import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.moonyh.data.common.Key
-import com.moonyh.domain.model.CityInfo
-import com.moonyh.domain.model.body.CitiesInfoBody
-import com.moonyh.domain.model.query.CitiesInfoQuery
+import com.moonyh.domain.model.info.CityInfo
+import com.moonyh.domain.model.api.body.CitiesInfoBody
+import com.moonyh.domain.model.api.query.CitiesInfoQuery
 import com.moonyh.domain.usecase.GetCitiesUseCase
 import com.moonyh.domain.usecase.SearchCitiesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,8 +1,8 @@
 package com.moonyh.presentation.viewmodel
 
 import android.app.Application
-import com.moonyh.domain.model.BusInfo
-import com.moonyh.domain.model.query.BusInStationQuery
+import com.moonyh.domain.model.info.BusInfo
+import com.moonyh.domain.model.api.query.BusInStationQuery
 import com.moonyh.domain.usecase.GetBusInStationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
