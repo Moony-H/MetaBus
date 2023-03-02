@@ -22,3 +22,6 @@
 간단한 기능으로 원하는 정류소의 버스 도착 정보를 볼 수 있는 앱 입니다.
 
 API로는 공공API의 [국토교통부_(TAGO)_버스정류소정보](https://www.data.go.kr/data/15098534/openapi.do)와 [국토교통부_(TAGO)_버스도착정보](https://www.data.go.kr/data/15098530/openapi.do)를 사용하여 도착 정보를 가져왔습니다.
+
+
+### 프로젝트의 자세한 설명은 [Wiki](https://github.com/Moony-H/MetaBus-Clean_Architecture_practice/wiki)에 작성해 놓았습니다.
