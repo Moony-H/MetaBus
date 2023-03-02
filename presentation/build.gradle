@@ -9,6 +9,7 @@ plugins {
 
 apply from: rootProject.file("android.gradle")
 
+//android.gradle에서 이것만 따로 바꿔 준다.
 android{
     namespace 'com.moonyh.presentation'
 }
