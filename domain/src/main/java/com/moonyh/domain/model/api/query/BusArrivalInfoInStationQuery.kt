@@ -1,6 +1,6 @@
-package com.moonyh.domain.model.query
+package com.moonyh.domain.model.api.query
 
-import com.moonyh.domain.model.normal.ApiQuery
+import com.moonyh.domain.model.api.base.ApiQuery
 
 data class BusArrivalInfoInStationQuery(
     val key: String,

@@ -1,6 +1,6 @@
 package com.moonyh.presentation.adapter
 
-import com.moonyh.domain.model.CityInfo
+import com.moonyh.domain.model.info.CityInfo
 import com.moonyh.presentation.databinding.SourceItemSearchBinding
 
 class CitySearchViewHolder(

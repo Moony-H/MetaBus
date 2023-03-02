@@ -1,8 +1,6 @@
-package com.moonyh.domain.model
+package com.moonyh.domain.model.info
 
-
-//실제 뷰에 노출 시킬 데이터
-interface BusInfo : Info {
+interface BusInfo : BaseInfo {
     val id: String
     val number: String
     val lineType: String
@@ -12,3 +10,4 @@ interface BusInfo : Info {
     val endStation: String
     val startStation: String
 }
+

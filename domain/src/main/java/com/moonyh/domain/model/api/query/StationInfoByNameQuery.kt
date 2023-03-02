@@ -1,6 +1,6 @@
-package com.moonyh.domain.model.query
+package com.moonyh.domain.model.api.query
 
-import com.moonyh.domain.model.normal.ApiQuery
+import com.moonyh.domain.model.api.base.ApiQuery
 
 data class StationInfoByNameQuery(
     val key: String,
@@ -9,4 +9,4 @@ data class StationInfoByNameQuery(
     val stationId:String="",
     var page: Int=1,
     var itemCount:Int=10
-):ApiQuery
+): ApiQuery

@@ -4,8 +4,8 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.moonyh.data.common.Key
-import com.moonyh.domain.model.StationInfo
-import com.moonyh.domain.model.query.StationInfoByNameQuery
+import com.moonyh.domain.model.info.StationInfo
+import com.moonyh.domain.model.api.query.StationInfoByNameQuery
 import com.moonyh.domain.usecase.GetStationInfoByNameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*

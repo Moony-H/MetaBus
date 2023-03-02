@@ -3,9 +3,9 @@ package com.moonyh.data.model.response
 import com.google.gson.annotations.SerializedName
 import com.moonyh.data.common.Header
 import com.moonyh.data.model.item.StationInfoItem
-import com.moonyh.domain.model.StationInfo
-import com.moonyh.domain.model.body.StationInfoBody
-import com.moonyh.domain.model.normal.MetaData
+import com.moonyh.domain.model.info.StationInfo
+import com.moonyh.domain.model.api.body.StationInfoBody
+import com.moonyh.domain.model.api.MetaData
 
 data class StationResponseData(
     @SerializedName("response")

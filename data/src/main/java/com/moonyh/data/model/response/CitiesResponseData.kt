@@ -3,15 +3,15 @@ package com.moonyh.data.model.response
 import com.google.gson.annotations.SerializedName
 import com.moonyh.data.common.Header
 import com.moonyh.data.model.item.CityInfoItem
-import com.moonyh.domain.model.body.CitiesInfoBody
-import com.moonyh.domain.model.normal.MetaData
+import com.moonyh.domain.model.api.body.CitiesInfoBody
+import com.moonyh.domain.model.api.MetaData
 
 data class CitiesResponseData(
     @SerializedName("response")
     val response:Response
-):CitiesInfoBody{
+): CitiesInfoBody {
     override val metaData: MetaData
-        get() = object :MetaData{
+        get() = object : MetaData {
             override val resultCode: String
                 get() = response.header.resultCode
             override val resultMessage: String

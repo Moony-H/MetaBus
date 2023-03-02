@@ -1,7 +1,7 @@
 package com.moonyh.data.model.item
 
 import com.google.gson.annotations.SerializedName
-import com.moonyh.domain.model.StationInfo
+import com.moonyh.domain.model.info.StationInfo
 
 data class StationInfoItem(
     @SerializedName("gpslati")

@@ -1,7 +1,7 @@
 package com.moonyh.data.model.item
 
 import com.google.gson.annotations.SerializedName
-import com.moonyh.domain.model.BusInfo
+import com.moonyh.domain.model.info.BusInfo
 
 data class BusInfoItem(
     @SerializedName("nodeid")

@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/citySearchFragment"
         android:name="com.moonyh.presentation.fragment.CitySearchFragment"
-        tools:layout="@layout/fragment_search"
+        tools:layout="@layout/fragment_search_station"
         >
         <action
             android:id="@+id/action_citySearchFragment_to_stationSearchFragment"
@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/stationSearchFragment"
         android:name="com.moonyh.presentation.fragment.StationSearchFragment"
-        tools:layout="@layout/fragment_search"
+        tools:layout="@layout/fragment_select_station"
         >
         <action
             android:id="@+id/action_stationSearchFragment_to_busNumberSearchFragment"

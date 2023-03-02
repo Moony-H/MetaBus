@@ -3,8 +3,8 @@ package com.moonyh.data.model.response
 import com.google.gson.annotations.SerializedName
 import com.moonyh.data.common.Header
 import com.moonyh.data.model.item.BusInfoItem
-import com.moonyh.domain.model.body.BusArrivalInStationInfoBody
-import com.moonyh.domain.model.normal.MetaData
+import com.moonyh.domain.model.api.body.BusArrivalInStationInfoBody
+import com.moonyh.domain.model.api.MetaData
 
 data class BusArrivalInStationResponseData(
     @SerializedName("response")
