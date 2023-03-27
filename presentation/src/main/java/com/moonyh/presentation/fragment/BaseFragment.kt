@@ -47,18 +47,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         _binding = viewBindingInflater(inflater, container, false)
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.isLoading.collectLatest {
-                if (it){
-                    setLoadingEnable()
-                    disableTouch()
-                }
 
-                else{
-                    setLoadingDisable()
-                    enableTouch()
-                }
-
-            }
         }
 
         val root = binding.root
