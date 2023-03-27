@@ -6,6 +6,7 @@ sealed class ApiResponse<out T> {
     class Error<T : Any>(val code: Int, val message: String?) : ApiResponse<T>()
     class Exception<T : Any>(val e: Throwable) : ApiResponse<T>()
     class NoResponse<T: Any>:ApiResponse<T>()
+    class Loading<T:Any>:ApiResponse<T>()
 
 }
 

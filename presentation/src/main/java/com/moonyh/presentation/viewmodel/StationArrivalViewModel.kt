@@ -28,7 +28,7 @@ class StationArrivalViewModel @Inject constructor(
         val query= StationArrivalInfoQuery(context.getString(com.moonyh.data.R.string.apiKey),cityCode,stationId, itemCount = 100)
         viewModelScope.launch {
             while(isActive){
-                runApiUseCase(getStationArrivalInfoUseCase,query,false){
+                runApiUseCase(getStationArrivalInfoUseCase,query){
                     Log.e("test","item: ${it}")
                     Log.e("test","item count: ${it.items.size}")
                     _stationArrivalInfo.value=it.items

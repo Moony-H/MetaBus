@@ -47,7 +47,6 @@ class CitySearchViewModel @Inject constructor(
                 return@launch
             val deferred=searchCitiesUseCase.invokeAsync(text,_serviceableCities.value!!.items)
             val cities=deferred.await()
-            Log.e("test","cities: $cities")
             _cities.value= arrayListOf<CityInfo>().apply { addAll(cities) }
 
         }
